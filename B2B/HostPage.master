@@ -1,0 +1,230 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="HostPage.master.cs" Inherits="B2B.HostPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server">
+    <link href="Content/CSS/font-awesome.css" rel="stylesheet">
+    <link href="Content/CSS/magnific-popup.css" rel="stylesheet">
+    <link href="Content/CSS/select2.css" rel="stylesheet">
+    <link href="Content/CSS/select2-bootstrap.css" rel="stylesheet">
+    <link href="Content/CSS/bootstrap-datepicker3.css" rel="stylesheet">
+    <link href="Content/CSS/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="Content/CSS/pnotify.custom.css?v=1" rel="stylesheet" />
+
+    <link rel="stylesheet" href="Content/CSS/jquery-ui-1.10.4.custom.css" />
+    <link rel="stylesheet" href="Content/CSS/bootstrap-multiselect.css" />
+    <!-- Theme CSS -->
+    <%--<link rel="stylesheet" href="Content/CSS/theme.css" />--%>
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="Content/CSS/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="Content/CSS/theme-custom.css?v=5" />
+    <link rel="stylesheet" href="Content/CSS/host-custom.css" />
+
+    <link rel="stylesheet" href="Content/CSS/select2.css" />
+    <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
+    <style>
+        .select2-selection.select2-selection--single {
+            box-shadow: none !important;
+            border: none;
+        }
+        .select2.select2-container.select2-container--bootstrap {
+            margin-left: -3px !important;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="HostHeaderPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li id="liRooms" runat="server" class="nav-item">
+                        <a class="nav-link" href="HostHome.aspx">Room</a>
+                    </li>
+
+                    <li id="liOrder" runat="server" class="nav-item">
+                        <a class="nav-link click-scroll" href="HostOrder.aspx">Ordini</a>
+                    </li>
+
+                    <li id="liOut" runat="server" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bi-person-circle" href="#" id="navbarLightDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink1">
+                            <li id="liUser" runat="server"><a class="dropdown-item text-bold" href="#" runat="server" id="username"></a></li>
+                            <li id="liLogOut" runat="server"><a class="dropdown-item" href="Login.aspx">Esci</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+    <main style="font-size: 20px; padding-top: 30px" class="bg">
+        <asp:ContentPlaceHolder ID="HostContentPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#36363e" fill-opacity="1" d="M0,96L40,117.3C80,139,160,181,240,186.7C320,192,400,160,480,149.3C560,139,640,149,720,176C800,203,880,245,960,250.7C1040,256,1120,224,1200,229.3C1280,235,1360,277,1400,298.7L1440,320L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+    </main>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="FooterPlaceHolder" runat="server">
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-12 mb-3">
+                    <!-- <h3><a href="index.html" class="custom-link mb-1">BnB Host</a></h3>-->
+                    <a href="login.aspx"> <img src="Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
+
+                    <p class="text-white">Da oggi una nuova realtà è presente a Napoli nei servizi a BnB e strutture ricettive</p>
+
+                    <p class="text-white"><a href="https://www.softforbet.it" class="text-white" target="_parent">Web Design: SFB</a></p>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">
+                    <h3 class="text-white mb-3">Store</h3>
+
+                    <p class="text-white mt-2">
+                        <i class="bi-geo-alt"></i>
+                        Piazza Rosario di Palazzo, 19
+                            80132 Napoli (NA)
+                    </p>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-12 mb-3">
+                    <h3 class="text-white mb-3">Contact Info</h3>
+
+                    <p class="text-white mb-1">
+                        <i class="bi-telephone me-1"></i>
+
+                        <a href="tel: 090-080-0760" class="text-white">(+39)-0814435533
+                        </a>
+                        <a href="tel: 090-080-0760" class="text-white">(+39)-3328875326
+                        </a>
+                    </p>
+
+                    <p class="text-white mb-0">
+                        <i class="bi-envelope me-1"></i>
+
+                        <a href="mailto:info@bnbhost.it" class="text-white">info@bnbhost.it
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-5 pt-lg-5">
+                <div class="col-lg-5 col-md-5 col-12 mb-3">
+                    <h5 class="text-white mb-3">BnB Host s.r.l.s.</h5>
+                    <p class="text-white">Registered office:</p>
+                    <p class="text-white">Piazza Rosario di Palazzo, 19 - 80132 Napoli (NA)</p>
+
+                    <p class="text-white">Partita Iva: 08155255410</p>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">
+                    <h5 class="text-white mb-3">Informazioni</h5>
+
+                    <p class="text-white"><a href="ContactPage.aspx" class="text-white" target="_blank">Contacts</a></p>
+                    <p class="text-white"><a href="Condition.aspx" class="text-white" target="_blank">Services & Conditions</a></p>
+                    <p class="text-white"><a href="Privacy.aspx" class="text-white" target="_blank">Privacy Policy</a></p>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-12 mb-3">
+                    <h5 class="text-white mb-3">Orari</h5>
+
+                    <p class="text-white">Lunedi - Sabato: 09:00/20:00</p>
+                    <p class="text-white"></p>
+                    
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <script src="Scripts/modernizr.js"></script>
+    <%--<script src="Scripts/jquery.min.js"></script>--%>
+
+    <script src="Scripts/jquery.browser.mobile.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/nanoscroller.js"></script>
+    <script src="Scripts/bootstrap-datepicker.min.js?v=1.7.0"></script>
+    <script src="Scripts/jquery.magnific-popup.js"></script>
+    <script src="Scripts/jquery-placeholder.js"></script>
+    <script src="Scripts/pnotify.custom.js"></script>
+
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="Scripts/theme.js?v=1"></script>
+
+    <!-- Theme Custom -->
+    <script src="Scripts/theme.custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="Scripts/theme.init.js"></script>
+
+    <script src="Scripts/util.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            window.jQBrowser = getBrowserInfo();
+
+            if (!isBootsrapSupported(window.jQBrowser)) {
+                new PNotify({
+                    title: 'Browser issue',
+                    text: 'This browser agent doesn\'t support full functionality of our service',
+                    type: 'error'
+                });
+            }
+
+            if (IsInternetExplorer()) {
+                $(".IE-browser-msg").removeClass("hidden");
+                //new PNotify({
+                //    title: 'Browser issue',
+                //    text: 'Internet Explorer is not supported. We recommend using Google Chrome',
+                //    type: 'error'
+                //});
+            }
+
+            $(window).resize(function () {
+                fixDataTableAlignment();
+            });
+
+        });
+        function fixDataTableAlignment() {
+            if ($(".dataTables_scrollBody").length != 0) {
+                $(".dataTables_scrollBody").each(function (i, element) {
+                    if ($(element).prev().hasClass("dataTables_scrollHead")) {
+                        var css = $(element).find("tbody tr:first").css("width");
+                        $(element).prev().find("table").css("width", css);
+
+                        var theads = $(element).prev().find("tr:first th");
+                        var theadQuickSearch = $(element).prev().find(".quickSearchRow th");
+
+                        //Skip when there are empty rows in table
+                        if ($(element).find("tbody tr:first td").length > 1) {
+                            $(element).find("tbody tr:first td").each(function (j, td) {
+                                var cssWidth = $(td).css("width");
+                                if (theads[j])
+                                    $(theads[j]).css("width", cssWidth);
+                                if (theadQuickSearch[j])
+                                    $(theadQuickSearch[j]).css("width", cssWidth);
+                            });
+                        }
+
+                    }
+                })
+            }
+        }
+    </script>
+
+    <script src="Scripts/jquery-ui-1.10.4.custom.js"></script>
+    <script src="Scripts/jquery.ui.touch-punch.js"></script>
+    <script src="Scripts/jquery.appear.js"></script>
+    <script src="Scripts/bootstrap-multiselect.js"></script>
+    <script src="Scripts/jquery.autosize.js"></script>
+    <script src="Scripts/select2.js"></script>
+    <asp:ContentPlaceHolder ID="HostFooterPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

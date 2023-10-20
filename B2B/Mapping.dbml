@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="B2B_dev_Fabio" Class="MappingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Accomodation" Member="Accomodations">
+    <Type Name="Accomodation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Accomodation_Room" Member="Rooms" ThisKey="Id" OtherKey="TypeId" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Accessory" Member="Accessories">
+    <Type Name="Accessory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Accessory_RoomAccessoryAlloc" Member="RoomAccessoryAllocs" ThisKey="Id" OtherKey="AccessoryId" Type="RoomAccessoryAlloc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderServiceAlloc" Member="OrderServiceAllocs">
+    <Type Name="OrderServiceAlloc">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Order_OrderServiceAlloc" Member="Order" ThisKey="OrderId" OtherKey="Id" Type="Order" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Service_OrderServiceAlloc" Member="Service" ThisKey="ServiceId" OtherKey="Id" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateOfPay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PaypalTransitionID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Payment_Order" Member="Orders" ThisKey="Id" OtherKey="PaymentId" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HostId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NumberOfGuests" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VoucherId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PaymentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmploymentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Order_OrderServiceAlloc" Member="OrderServiceAllocs" ThisKey="Id" OtherKey="OrderId" Type="OrderServiceAlloc" />
+      <Association Name="Payment_Order" Member="Payment" ThisKey="PaymentId" OtherKey="Id" Type="Payment" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Voucher_Order" Member="Voucher" ThisKey="VoucherId" OtherKey="Id" Type="Voucher" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Host_Order" Member="Host" ThisKey="HostId" OtherKey="Id" Type="Host" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Voucher" Member="Vouchers">
+    <Type Name="Voucher">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SerialNumberGenerator" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Voucher_Order" Member="Orders" ThisKey="Id" OtherKey="VoucherId" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employment" Member="Employments">
+    <Type Name="Employment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Host" Member="Hosts">
+    <Type Name="Host">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IsB2BStaff" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ResetToken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ResetTokenExpiry" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Host_Order" Member="Orders" ThisKey="Id" OtherKey="HostId" Type="Order" />
+      <Association Name="Host_Room" Member="Rooms" ThisKey="Id" OtherKey="HostId" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomAccessoryAlloc" Member="RoomAccessoryAllocs">
+    <Type Name="RoomAccessoryAlloc">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AccessoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Accessory_RoomAccessoryAlloc" Member="Accessory" ThisKey="AccessoryId" OtherKey="Id" Type="Accessory" IsForeignKey="true" />
+      <Association Name="Room_RoomAccessoryAlloc" Member="Room" ThisKey="RoomId" OtherKey="Id" Type="Room" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PriceListGroup" Member="PriceListGroups">
+    <Type Name="PriceListGroup">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Percentuale" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="PriceListGroup_Room" Member="Rooms" ThisKey="Id" OtherKey="PriceListGroupId" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HavePriceGroup" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Service_OrderServiceAlloc" Member="OrderServiceAllocs" ThisKey="Id" OtherKey="ServiceId" Type="OrderServiceAlloc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StairCases" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Floor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Lift" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PriceListGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Room_RoomAccessoryAlloc" Member="RoomAccessoryAllocs" ThisKey="Id" OtherKey="RoomId" Type="RoomAccessoryAlloc" />
+      <Association Name="Accomodation_Room" Member="Accomodation" ThisKey="TypeId" OtherKey="Id" Type="Accomodation" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Host_Room" Member="Host" ThisKey="HostId" OtherKey="Id" Type="Host" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="PriceListGroup_Room" Member="PriceListGroup" ThisKey="PriceListGroupId" OtherKey="Id" Type="PriceListGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

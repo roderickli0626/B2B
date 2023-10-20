@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="B2B.Page" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>BnB Host </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+    <%--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light|Shadows+Into+Light+Two|Roboto" rel="stylesheet" type="text/css" />--%>
+    <%--<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" id="iconLink" runat="server"/>--%>
+    <link href="Content/CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/CSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="Content/CSS/owl.carousel.min.css" rel="stylesheet">
+    <link href="Content/CSS/tooplate-moso-interior.css" rel="stylesheet">
+    <asp:ContentPlaceHolder ID="HeaderPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body runat="server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <%--<script src="Scripts/click-scroll.js"></script>--%>
+    <script src="Scripts/jquery.backstretch.min.js"></script>
+    <script src="Scripts/owl.carousel.min.js"></script>
+    <script src="Scripts/custom.js"></script>
+
+    <asp:ContentPlaceHolder ID="FooterPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+
+</body>
+</html>
