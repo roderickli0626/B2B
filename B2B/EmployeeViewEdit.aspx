@@ -235,11 +235,11 @@
             </div>
             <div class="row mt-5 pt-lg-5">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
-                    <h5 class="text-white mb-3">BnB Host s.r.l.s.</h5>
+                    <h5 class="text-white mb-3">BBH Management s.r.l.</h5>
                     <p class="text-white">Reception:</p>
                     
 
-                    <p class="text-white">Partita Iva: 555555</p>
+                    <p class="text-white">Partita Iva: 10380201219</p>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">

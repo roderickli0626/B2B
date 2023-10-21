@@ -108,7 +108,7 @@ namespace B2B
         {
             // Compose the email
             string subject = "Reset Your Password";
-            string body = "<a href='http://localhost:60916/ResetPassword.aspx?email=" + email + "&token=" + resetToken + "' class='btn btn-success btn-lg'>Reset Password</a>";
+            string body = "<a href='http://www.bnbhosts.it/ResetPassword.aspx?email=" + email + "&token=" + resetToken + "' class='btn btn-success btn-lg'>Reset Password</a>";
 
             // Configure the SMTP client
             //SmtpClient smtpClient = new SmtpClient("localhost", 1025);

@@ -304,7 +304,7 @@ namespace B2B
                     payment.Amount = totalAmount;//TODO Voucher
                     payment.PaypalTransitionID = HfPaymentID.Value;
                     payment.DateOfPay = DateTime.Now;
-                    payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
+                    payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
                     paymentID = new PaymentDAO().Insert2(payment);
                 }
 

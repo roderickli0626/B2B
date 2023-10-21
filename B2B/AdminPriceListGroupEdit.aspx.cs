@@ -43,7 +43,7 @@ namespace B2B
         {
             if (priceListGroup == null) { return; }
 
-            pageTitle.InnerText = "PRICE LIST GROUP (modifica)";
+            pageTitle.InnerText = "LISTINO PREZZI (modifica)";
             TxtDescription.Text = priceListGroup.DescriptionShort;
             TxtPercent.Text = priceListGroup.Percentuale.ToString();            
         }

@@ -309,7 +309,7 @@
                     <h5 class="text-white mb-3">BBH Management s.r.l.</h5>
                     <p class="text-white">Reception:</p>
                     <p class="text-white">Piazzetta Rosario di Palazzo, 19 - 80132 Napoli (NA)</p>
-                    <p class="text-white">Partita Iva: 2522541110</p>
+                    <p class="text-white">Partita Iva: 10380201219</p>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">

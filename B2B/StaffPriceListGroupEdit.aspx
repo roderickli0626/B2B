@@ -5,7 +5,7 @@
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
-                <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">PRICE LIST GROUP (nuovo)</h2>
+                <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">LISTINO PREZZI (nuovo)</h2>
             </header>
             <div class="container">
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -23,7 +23,7 @@
                             <asp:TextBox ID="TxtDescription" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
                         </div>
                         <div class="input-group align-items-center">
-                            <label for="status">Percent: </label>
+                            <label for="status">Percentuale: </label>
                             <asp:TextBox ID="TxtPercent" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
                         </div>
                         <div class="row text-right">

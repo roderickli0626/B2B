@@ -70,7 +70,7 @@
                             <li id="liServices" runat="server"><a class="dropdown-item" href="StaffService.aspx">Servizi</a></li>
                             <li id="liAccommodations" runat="server"><a class="dropdown-item" href="StaffAccommodation.aspx">Sistemazioni</a></li>
                             <li id="liAccessories" runat="server"><a class="dropdown-item" href="StaffAccessory.aspx">Accessori</a></li>
-                            <li id="liPriceListGroup" runat="server"><a class="dropdown-item" href="StaffPriceListGroup.aspx">Price List Group</a></li>
+                            <li id="liPriceListGroup" runat="server"><a class="dropdown-item" href="StaffPriceListGroup.aspx">Listino Prezzi</a></li>
                         </ul>
                     </li>
 
@@ -146,11 +146,11 @@
             </div>
             <div class="row mt-5 pt-lg-5">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
-                    <h5 class="text-white mb-3">BnB Host</h5>
+                    <h5 class="text-white mb-3">BBH Management s.r.l.</h5>
                     <p class="text-white">Reception:</p>
                     <p class="text-white">Piazza Rosario di Palazzo, 19 - 80132 Napoli(NA)</p>
 
-                    <p class="text-white">Partita Iva: 45214805521</p>
+                    <p class="text-white">Partita Iva: 10380201219</p>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">

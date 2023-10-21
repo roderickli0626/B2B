@@ -14,8 +14,8 @@
                     <asp:RequiredFieldValidator ID="ReqValEmail" runat="server" ErrorMessage="Inserisci indirizzo Email." ControlToValidate="TxtStaffEmail" Display="None" Enabled="true"></asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="PasswordValidator1" runat="server" ErrorMessage="Inserisci la password." Display="None"></asp:CustomValidator>
                     <asp:CustomValidator ID="PasswordValidator" runat="server" ErrorMessage="Le password non coincidono." Display="None"></asp:CustomValidator>
-                    <asp:CustomValidator ID="EmailValidator" runat="server" ErrorMessage="Email is not correct." Display="None"></asp:CustomValidator>
-                    <asp:CustomValidator ID="ServerValidator" runat="server" ErrorMessage="Email is already registered." Display="None"></asp:CustomValidator>
+                    <asp:CustomValidator ID="EmailValidator" runat="server" ErrorMessage="Questa Email non è corretta." Display="None"></asp:CustomValidator>
+                    <asp:CustomValidator ID="ServerValidator" runat="server" ErrorMessage="Questo indirizzo Email è stato già usato." Display="None"></asp:CustomValidator>
                 </div>
 
                 <div class="row">

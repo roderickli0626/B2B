@@ -32,7 +32,7 @@
                                 <th>Servizio</th>
                                 <th>Descrizione</th>
                                 <th>Prezzo</th>
-                                <th>HaveGroupPrice</th>
+                                <th>Listino Prezzi</th>
                                 <th>Azione</th>
                             </tr>
                         </thead>
@@ -79,7 +79,7 @@
                 }, {
                     "data": "HaveGroupPrice",
                     "render": function (data, type, row, meta) {
-                        return data == true ? '<label class="text-success">YES</label>' : '<label class="text-danger">NO</label>';
+                        return data == true ? '<label class="text-success">SI</label>' : '<label class="text-danger">NO</label>';
                     }
                 }, {
                     "data": null,

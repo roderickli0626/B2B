@@ -40,9 +40,9 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="input-group align-items-center">
-                                    <label  class="col-md-6">Price Group: </label>
-                                    <asp:RadioButton ID="RadioButton1" runat="server" CssClass="form-control radio-custom text-primary" Text="YES" GroupName="StatusOption" Value="1" Checked="true" />
-                                    <asp:RadioButton ID="RadioButton2" runat="server" CssClass="form-control radio-custom text-danger" Text="NO" GroupName="StatusOption" Value="0" />
+                                    <label  class="col-md-6">Listino Prezzi: </label>
+                                    <asp:RadioButton ID="RadioButton1" runat="server" CssClass="form-control radio-custom text-primary" Text=".SI." GroupName="StatusOption" Value="1" Checked="true" />
+                                    <asp:RadioButton ID="RadioButton2" runat="server" CssClass="form-control radio-custom text-danger" Text=".NO." GroupName="StatusOption" Value="0" />
                                 </div>
                             </div>
                         </div>

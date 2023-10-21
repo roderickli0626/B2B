@@ -28,7 +28,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
         <div class="container">
-            <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a>
+         <%--   <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a> --%>
+            <img src="Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
+            
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,7 +65,7 @@
                             <li id="liServices" runat="server"><a class="dropdown-item" href="AdminService.aspx">Servizi</a></li>
                             <li id="liAccommodations" runat="server"><a class="dropdown-item" href="AdminAccommodation.aspx">Sistemazioni</a></li>
                             <li id="liAccessories" runat="server"><a class="dropdown-item" href="AdminAccessory.aspx">Accessori</a></li>
-                            <li id="liPriceListGroup" runat="server"><a class="dropdown-item" href="AdminPriceListGroup.aspx">Price List Group</a></li>
+                            <li id="liPriceListGroup" runat="server"><a class="dropdown-item" href="AdminPriceListGroup.aspx">Listino Prezzi</a></li>
                         </ul>
                     </li>
 
@@ -140,10 +142,10 @@
             </div>
             <div class="row mt-5 pt-lg-5">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
-                    <h5 class="text-white mb-3">BnB Host s.r.l.s.</h5>
+                    <h5 class="text-white mb-3">BBH Management s.r.l.</h5>
                     <p class="text-white">Registered office:</p>
                     <p class="text-white">Piazza Rosario di Palazzo, 19 - 80132 Napoli(NA)</p>
-                    <p class="text-white">Partita Iva: 2241122541</p>
+                    <p class="text-white">Partita Iva: 10380201219</p>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">

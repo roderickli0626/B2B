@@ -20,7 +20,7 @@ namespace B2B.Util
         public static double? TryParseDouble(string text)
         {
             if (text == null || text.Length == 0) return null;
-            string temp = text.Replace("$", "").Replace(" ", "").Replace(",", "");
+            string temp = text.Replace("$", "").Replace(" ", "");
             double value = 0;
             if (!double.TryParse(temp, out value)) return null;
             return value;

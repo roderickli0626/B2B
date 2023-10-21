@@ -6,7 +6,7 @@
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-10 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
-                <h2 class="hero-title text-black-50 mt-3 mb-4">PRICE LIST GROUP</h2>
+                <h2 class="hero-title text-black-50 mt-3 mb-4">LISTINO PREZZI</h2>
             </header>
             <div class="container">
                 <div>
@@ -28,9 +28,9 @@
                     <table class="table table-bordered table-striped text-center" id="pricegroup-table">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Title</th>
-                                <th>Percent</th>
+                                <th>Nr</th>
+                                <th>Descrizione</th>
+                                <th>%</th>
                                 <th>Azione</th>
                             </tr>
                         </thead>
