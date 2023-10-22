@@ -112,17 +112,6 @@
       <Association Name="PriceListGroup_Room" Member="Rooms" ThisKey="Id" OtherKey="PriceListGroupId" Type="Room" />
     </Type>
   </Table>
-  <Table Name="dbo.Service" Member="Services">
-    <Type Name="Service">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="HavePriceGroup" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Service_OrderServiceAlloc" Member="OrderServiceAllocs" ThisKey="Id" OtherKey="ServiceId" Type="OrderServiceAlloc" />
-    </Type>
-  </Table>
   <Table Name="dbo.Room" Member="Rooms">
     <Type Name="Room">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -139,6 +128,27 @@
       <Association Name="Accomodation_Room" Member="Accomodation" ThisKey="TypeId" OtherKey="Id" Type="Accomodation" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Host_Room" Member="Host" ThisKey="HostId" OtherKey="Id" Type="Host" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="PriceListGroup_Room" Member="PriceListGroup" ThisKey="PriceListGroupId" OtherKey="Id" Type="PriceListGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DescriptionShort" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescriptionLong" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HavePriceGroup" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GrandServiceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Service_OrderServiceAlloc" Member="OrderServiceAllocs" ThisKey="Id" OtherKey="ServiceId" Type="OrderServiceAlloc" />
+      <Association Name="GrandService_Service" Member="GrandService" ThisKey="GrandServiceID" OtherKey="Id" Type="GrandService" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GrandService" Member="GrandServices">
+    <Type Name="GrandService">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="GrandService_Service" Member="Services" ThisKey="Id" OtherKey="GrandServiceID" Type="Service" />
     </Type>
   </Table>
 </Database>

@@ -90,10 +90,7 @@ namespace B2B
                     }
                 }
 
-                holiday[order.StartDate?.ToString("M/d/yyyy")] += "<a class='d-block' title='" + subTitle + "' href='AdminOrderEdit.aspx?id=" + order.Id + "'>" + order.Host.Name + " " + order.Id + " (" + order.EndDate?.ToString("dd/MM/yyyy") + ")</a>";
-                holiday[order.StartDate?.ToString("d/M/yyyy")] += "<a class='d-block' title='" + subTitle + "' href='AdminOrderEdit.aspx?id=" + order.Id + "'>" + order.Host.Name + " " + order.Id + " (" + order.EndDate?.ToString("dd/MM/yyyy") + ")</a>";
-                holiday[order.StartDate?.ToString("dd/MM/yyyy")] += "<a class='d-block' title='" + subTitle + "' href='AdminOrderEdit.aspx?id=" + order.Id + "'>" + order.Host.Name + " " + order.Id + " (" + order.EndDate?.ToString("dd/MM/yyyyy") + ")</a>";
-                holiday[order.StartDate?.ToString("MM/dd/yyyy")] += "<a class='d-block' title='" + subTitle + "' href='AdminOrderEdit.aspx?id=" + order.Id + "'>" + order.Host.Name + " " + order.Id + " (" + order.EndDate?.ToString("dd/MM/yyyy") + ")</a>";
+                holiday[order.StartDate?.ToString("dd/MM/yyyy")] += "<a class='d-block' title='" + subTitle + "' href='AdminOrderEdit.aspx?id=" + order.Id + "'>" + order.Host.Name + " " + order.Id + "<br/>(End:" + order.EndDate?.ToString("dd/MM/yyyy") + ")</a>";
             }
 
             return holiday;
@@ -110,13 +107,13 @@ namespace B2B
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
-            if (HolidayList[e.Day.Date.ToShortDateString()] != null)
+            if (HolidayList[e.Day.Date.ToString("dd/MM/yyyy")] != null)
             {
                 Literal literal1 = new Literal();
                 literal1.Text = "<br/>";
                 e.Cell.Controls.Add(literal1);
                 Label label1 = new Label();
-                label1.Text = (string)HolidayList[e.Day.Date.ToShortDateString()];
+                label1.Text = (string)HolidayList[e.Day.Date.ToString("dd/MM/yyyy")];
                 label1.Font.Size = new FontUnit(FontSize.Small);
                 e.Cell.Controls.Add(label1);
             }

@@ -452,6 +452,37 @@ namespace B2B
             ResponseProc(success, "");
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public void FindGrandServices(int draw, int start, int length, string searchVal)
+        {
+            if (!loginSystem.IsAdminLoggedIn() && !loginSystem.IsStaffLoggedIn()) return;
+
+            GrandServiceController grandServiceController = new GrandServiceController();
+            SearchResult searchResult = grandServiceController.SearchBy(start, length, searchVal);
+
+            JSDataTable result = new JSDataTable();
+            result.data = (IEnumerable<object>)searchResult.ResultList;
+            result.draw = draw;
+            result.recordsTotal = searchResult.TotalCount;
+            result.recordsFiltered = searchResult.TotalCount;
+
+            ResponseJson(result);
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public void AdminDeleteGrandService(int id)
+        {
+            //Is Logged in?
+            if (!loginSystem.IsAdminLoggedIn()) return;
+
+            GrandServiceController grandServiceController = new GrandServiceController();
+            bool success = grandServiceController.DeleteGrandService(id);
+
+            ResponseProc(success, "");
+        }
+
         protected void ResponseJson(Object result)
         {
             HttpResponse Response = Context.Response;

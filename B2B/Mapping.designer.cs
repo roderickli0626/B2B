@@ -60,12 +60,15 @@ namespace B2B
     partial void InsertPriceListGroup(PriceListGroup instance);
     partial void UpdatePriceListGroup(PriceListGroup instance);
     partial void DeletePriceListGroup(PriceListGroup instance);
-    partial void InsertService(Service instance);
-    partial void UpdateService(Service instance);
-    partial void DeleteService(Service instance);
     partial void InsertRoom(Room instance);
     partial void UpdateRoom(Room instance);
     partial void DeleteRoom(Room instance);
+    partial void InsertService(Service instance);
+    partial void UpdateService(Service instance);
+    partial void DeleteService(Service instance);
+    partial void InsertGrandService(GrandService instance);
+    partial void UpdateGrandService(GrandService instance);
+    partial void DeleteGrandService(GrandService instance);
     #endregion
 		
 		public MappingDataContext(string connection) : 
@@ -172,6 +175,14 @@ namespace B2B
 			}
 		}
 		
+		public System.Data.Linq.Table<Room> Rooms
+		{
+			get
+			{
+				return this.GetTable<Room>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Service> Services
 		{
 			get
@@ -180,11 +191,11 @@ namespace B2B
 			}
 		}
 		
-		public System.Data.Linq.Table<Room> Rooms
+		public System.Data.Linq.Table<GrandService> GrandServices
 		{
 			get
 			{
-				return this.GetTable<Room>();
+				return this.GetTable<GrandService>();
 			}
 		}
 	}
@@ -2472,216 +2483,6 @@ namespace B2B
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Service")]
-	public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _DescriptionShort;
-		
-		private string _DescriptionLong;
-		
-		private string _Image;
-		
-		private System.Nullable<double> _Price;
-		
-		private System.Nullable<bool> _HavePriceGroup;
-		
-		private EntitySet<OrderServiceAlloc> _OrderServiceAllocs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDescriptionShortChanging(string value);
-    partial void OnDescriptionShortChanged();
-    partial void OnDescriptionLongChanging(string value);
-    partial void OnDescriptionLongChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    partial void OnPriceChanging(System.Nullable<double> value);
-    partial void OnPriceChanged();
-    partial void OnHavePriceGroupChanging(System.Nullable<bool> value);
-    partial void OnHavePriceGroupChanged();
-    #endregion
-		
-		public Service()
-		{
-			this._OrderServiceAllocs = new EntitySet<OrderServiceAlloc>(new Action<OrderServiceAlloc>(this.attach_OrderServiceAllocs), new Action<OrderServiceAlloc>(this.detach_OrderServiceAllocs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(50)")]
-		public string DescriptionShort
-		{
-			get
-			{
-				return this._DescriptionShort;
-			}
-			set
-			{
-				if ((this._DescriptionShort != value))
-				{
-					this.OnDescriptionShortChanging(value);
-					this.SendPropertyChanging();
-					this._DescriptionShort = value;
-					this.SendPropertyChanged("DescriptionShort");
-					this.OnDescriptionShortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(MAX)")]
-		public string DescriptionLong
-		{
-			get
-			{
-				return this._DescriptionLong;
-			}
-			set
-			{
-				if ((this._DescriptionLong != value))
-				{
-					this.OnDescriptionLongChanging(value);
-					this.SendPropertyChanging();
-					this._DescriptionLong = value;
-					this.SendPropertyChanged("DescriptionLong");
-					this.OnDescriptionLongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(MAX)")]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
-		public System.Nullable<double> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HavePriceGroup", DbType="Bit")]
-		public System.Nullable<bool> HavePriceGroup
-		{
-			get
-			{
-				return this._HavePriceGroup;
-			}
-			set
-			{
-				if ((this._HavePriceGroup != value))
-				{
-					this.OnHavePriceGroupChanging(value);
-					this.SendPropertyChanging();
-					this._HavePriceGroup = value;
-					this.SendPropertyChanged("HavePriceGroup");
-					this.OnHavePriceGroupChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_OrderServiceAlloc", Storage="_OrderServiceAllocs", ThisKey="Id", OtherKey="ServiceId")]
-		public EntitySet<OrderServiceAlloc> OrderServiceAllocs
-		{
-			get
-			{
-				return this._OrderServiceAllocs;
-			}
-			set
-			{
-				this._OrderServiceAllocs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_OrderServiceAllocs(OrderServiceAlloc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Service = this;
-		}
-		
-		private void detach_OrderServiceAllocs(OrderServiceAlloc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Service = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Room")]
 	public partial class Room : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3108,6 +2909,419 @@ namespace B2B
 		{
 			this.SendPropertyChanging();
 			entity.Room = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Service")]
+	public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _DescriptionShort;
+		
+		private string _DescriptionLong;
+		
+		private string _Image;
+		
+		private System.Nullable<double> _Price;
+		
+		private System.Nullable<bool> _HavePriceGroup;
+		
+		private System.Nullable<int> _GrandServiceID;
+		
+		private EntitySet<OrderServiceAlloc> _OrderServiceAllocs;
+		
+		private EntityRef<GrandService> _GrandService;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescriptionShortChanging(string value);
+    partial void OnDescriptionShortChanged();
+    partial void OnDescriptionLongChanging(string value);
+    partial void OnDescriptionLongChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    partial void OnPriceChanging(System.Nullable<double> value);
+    partial void OnPriceChanged();
+    partial void OnHavePriceGroupChanging(System.Nullable<bool> value);
+    partial void OnHavePriceGroupChanged();
+    partial void OnGrandServiceIDChanging(System.Nullable<int> value);
+    partial void OnGrandServiceIDChanged();
+    #endregion
+		
+		public Service()
+		{
+			this._OrderServiceAllocs = new EntitySet<OrderServiceAlloc>(new Action<OrderServiceAlloc>(this.attach_OrderServiceAllocs), new Action<OrderServiceAlloc>(this.detach_OrderServiceAllocs));
+			this._GrandService = default(EntityRef<GrandService>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionShort", DbType="VarChar(50)")]
+		public string DescriptionShort
+		{
+			get
+			{
+				return this._DescriptionShort;
+			}
+			set
+			{
+				if ((this._DescriptionShort != value))
+				{
+					this.OnDescriptionShortChanging(value);
+					this.SendPropertyChanging();
+					this._DescriptionShort = value;
+					this.SendPropertyChanged("DescriptionShort");
+					this.OnDescriptionShortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriptionLong", DbType="VarChar(MAX)")]
+		public string DescriptionLong
+		{
+			get
+			{
+				return this._DescriptionLong;
+			}
+			set
+			{
+				if ((this._DescriptionLong != value))
+				{
+					this.OnDescriptionLongChanging(value);
+					this.SendPropertyChanging();
+					this._DescriptionLong = value;
+					this.SendPropertyChanged("DescriptionLong");
+					this.OnDescriptionLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(MAX)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
+		public System.Nullable<double> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HavePriceGroup", DbType="Bit")]
+		public System.Nullable<bool> HavePriceGroup
+		{
+			get
+			{
+				return this._HavePriceGroup;
+			}
+			set
+			{
+				if ((this._HavePriceGroup != value))
+				{
+					this.OnHavePriceGroupChanging(value);
+					this.SendPropertyChanging();
+					this._HavePriceGroup = value;
+					this.SendPropertyChanged("HavePriceGroup");
+					this.OnHavePriceGroupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrandServiceID", DbType="Int")]
+		public System.Nullable<int> GrandServiceID
+		{
+			get
+			{
+				return this._GrandServiceID;
+			}
+			set
+			{
+				if ((this._GrandServiceID != value))
+				{
+					if (this._GrandService.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGrandServiceIDChanging(value);
+					this.SendPropertyChanging();
+					this._GrandServiceID = value;
+					this.SendPropertyChanged("GrandServiceID");
+					this.OnGrandServiceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_OrderServiceAlloc", Storage="_OrderServiceAllocs", ThisKey="Id", OtherKey="ServiceId")]
+		public EntitySet<OrderServiceAlloc> OrderServiceAllocs
+		{
+			get
+			{
+				return this._OrderServiceAllocs;
+			}
+			set
+			{
+				this._OrderServiceAllocs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GrandService_Service", Storage="_GrandService", ThisKey="GrandServiceID", OtherKey="Id", IsForeignKey=true)]
+		public GrandService GrandService
+		{
+			get
+			{
+				return this._GrandService.Entity;
+			}
+			set
+			{
+				GrandService previousValue = this._GrandService.Entity;
+				if (((previousValue != value) 
+							|| (this._GrandService.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GrandService.Entity = null;
+						previousValue.Services.Remove(this);
+					}
+					this._GrandService.Entity = value;
+					if ((value != null))
+					{
+						value.Services.Add(this);
+						this._GrandServiceID = value.Id;
+					}
+					else
+					{
+						this._GrandServiceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("GrandService");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_OrderServiceAllocs(OrderServiceAlloc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = this;
+		}
+		
+		private void detach_OrderServiceAllocs(OrderServiceAlloc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GrandService")]
+	public partial class GrandService : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private EntitySet<Service> _Services;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public GrandService()
+		{
+			this._Services = new EntitySet<Service>(new Action<Service>(this.attach_Services), new Action<Service>(this.detach_Services));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX)")]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GrandService_Service", Storage="_Services", ThisKey="Id", OtherKey="GrandServiceID")]
+		public EntitySet<Service> Services
+		{
+			get
+			{
+				return this._Services;
+			}
+			set
+			{
+				this._Services.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Services(Service entity)
+		{
+			this.SendPropertyChanging();
+			entity.GrandService = this;
+		}
+		
+		private void detach_Services(Service entity)
+		{
+			this.SendPropertyChanging();
+			entity.GrandService = null;
 		}
 	}
 }

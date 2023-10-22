@@ -176,6 +176,8 @@
     <Content Include="AdminAccommodationEdit.aspx" />
     <Content Include="AdminEmployee.aspx" />
     <Content Include="AdminEmployeeEdit.aspx" />
+    <Content Include="AdminGrandService.aspx" />
+    <Content Include="AdminGrandServiceEdit.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminHost.aspx" />
     <Content Include="AdminHostEdit.aspx" />
@@ -371,6 +373,8 @@
     <Content Include="StaffAccommodationEdit.aspx" />
     <Content Include="StaffEmployee.aspx" />
     <Content Include="StaffEmployeeEdit.aspx" />
+    <Content Include="StaffGrandService.aspx" />
+    <Content Include="StaffGrandServiceEdit.aspx" />
     <Content Include="StaffHome.aspx" />
     <Content Include="StaffHost.aspx" />
     <Content Include="StaffHostEdit.aspx" />
@@ -432,6 +436,20 @@
     </Compile>
     <Compile Include="AdminEmployeeEdit.aspx.designer.cs">
       <DependentUpon>AdminEmployeeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminGrandService.aspx.cs">
+      <DependentUpon>AdminGrandService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminGrandService.aspx.designer.cs">
+      <DependentUpon>AdminGrandService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminGrandServiceEdit.aspx.cs">
+      <DependentUpon>AdminGrandServiceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminGrandServiceEdit.aspx.designer.cs">
+      <DependentUpon>AdminGrandServiceEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
@@ -580,6 +598,7 @@
     <Compile Include="Controller\AccommodationController.cs" />
     <Compile Include="Controller\CryptoController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\GrandServiceController.cs" />
     <Compile Include="Controller\HostController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\OrderController.cs" />
@@ -593,6 +612,7 @@
     <Compile Include="DAO\AccommodationDAO.cs" />
     <Compile Include="DAO\BasicDAO.cs" />
     <Compile Include="DAO\EmploymentDAO.cs" />
+    <Compile Include="DAO\GrandServiceDAO.cs" />
     <Compile Include="DAO\HostDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\OrderServiceAllocDAO.cs" />
@@ -698,6 +718,7 @@
     <Compile Include="Model\AccessoryCheck.cs" />
     <Compile Include="Model\AccommodationCheck.cs" />
     <Compile Include="Model\EmployeeCheck.cs" />
+    <Compile Include="Model\GrandServiceCheck.cs" />
     <Compile Include="Model\HostCheck.cs" />
     <Compile Include="Model\JSDataTable.cs" />
     <Compile Include="Model\OrderCheck.cs" />
@@ -811,6 +832,20 @@
     </Compile>
     <Compile Include="StaffEmployeeEdit.aspx.designer.cs">
       <DependentUpon>StaffEmployeeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffGrandService.aspx.cs">
+      <DependentUpon>StaffGrandService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffGrandService.aspx.designer.cs">
+      <DependentUpon>StaffGrandService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffGrandServiceEdit.aspx.cs">
+      <DependentUpon>StaffGrandServiceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffGrandServiceEdit.aspx.designer.cs">
+      <DependentUpon>StaffGrandServiceEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="StaffHome.aspx.cs">
       <DependentUpon>StaffHome.aspx</DependentUpon>
