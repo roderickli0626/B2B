@@ -49,6 +49,7 @@ namespace B2B
                     HfServiceAlloc.Value = jsonString;
                     TxtTotalAmount.Text = editOrder.TotalAmount.ToString();
                 }
+                LoadGrandService();
                 LoadService();
                 LoadServiceTable();
                 LoadOwners();
@@ -57,6 +58,12 @@ namespace B2B
                 SetVisible();
             }
         }
+        private void LoadGrandService()
+        {
+            List<GrandService> grandList = new GrandServiceDAO().FindAll();
+            ControlUtil.DataBind(ComboGrandService, grandList, "Id", "Title", 0, "");
+        }
+
         private void SetVisible()
         {
             if (editOrder == null)
@@ -156,12 +163,12 @@ namespace B2B
 
         private void LoadService()
         {
+            int grandServiceID = ControlUtil.GetSelectedValue(ComboGrandService) ?? 0;
             List<Service> services = new List<Service>();
-            services = serviceDAO.FindAll();
-            ComboService.Items.Clear();
-            ComboService.Items.Add(new ListItem("", ""));
+            services = serviceDAO.FindByGrandService(grandServiceID);
 
             ControlUtil.DataBind(ComboService, services, "Id", "DescriptionShort");
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
         }
         private void LoadServiceTable()
         {
@@ -304,6 +311,11 @@ namespace B2B
                     TxtTotalAmount.Text = serviceAllocList.Sum(s => s.Amount).ToString();
                 }
             }
+        }
+
+        protected void ComboGrandService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadService();
         }
     }
 }

@@ -15,10 +15,10 @@ namespace B2B.Controller
             serviceDAO = new ServiceDAO();
         }
 
-        public SearchResult SearchBy(int start, int length, string search)
+        public SearchResult SearchBy(int start, int length, string search, int grandServiceID)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Service> list = serviceDAO.SearchBy(search).OrderBy(l => l.Id);
+            IQueryable<Service> list = serviceDAO.SearchBy(search, grandServiceID).OrderBy(l => l.Id);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 
@@ -46,7 +46,7 @@ namespace B2B.Controller
             return serviceDAO.FindById(id);
         }
 
-        public bool SaveService(int id, string descriptionShort, string DescriptionLong, double price, string image, bool hasPriceGroup)
+        public bool SaveService(int id, string descriptionShort, string DescriptionLong, double price, string image, bool hasPriceGroup, int? grandServcieID)
         {
             if (id == 0)
             {
@@ -56,6 +56,7 @@ namespace B2B.Controller
                 service.Price = price;
                 service.Image = image;
                 service.HavePriceGroup = hasPriceGroup;
+                service.GrandServiceID = grandServcieID;
 
                 return serviceDAO.Insert(service);
             }
@@ -67,6 +68,7 @@ namespace B2B.Controller
                 service.Price = price;
                 service.Image = image;
                 service.HavePriceGroup = hasPriceGroup;
+                service.GrandServiceID = grandServcieID;
 
                 return serviceDAO.Update(service);
             }

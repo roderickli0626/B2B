@@ -102,19 +102,31 @@
                 </div>
                 <div>
                     <div class="row" runat="server" id="serviceDiv">
-                        <div class="col-lg-6 col-md-6 col-6">
+                        <div class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Servizio: </label>
-                                <asp:DropDownList ID="ComboService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                                <label for="status">Grande Servizio: </label>
+                                <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" 
+                                    ClientIDMode="Static" CausesValidation="false" AutoPostBack="true" OnSelectedIndexChanged="ComboGrandService_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <asp:UpdatePanel ID="UpdatePanel4" runat="server" class="input-group align-items-center" style="height: 52px">
+                                <ContentTemplate>
+                                    <label for="status">Servizio: </label>
+                                    <asp:DropDownList ID="ComboService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="ComboGrandService" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-6">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Q.tà: </label>
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3" style="text-align: right">
+                        <div class="col-lg-2 col-md-2 col-6" style="text-align: right">
                             <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
                             <i class="fa fa-plus mr-sm"></i> Agg. Servizio
                             </asp:LinkButton>
@@ -160,7 +172,7 @@
                                             <td>
                                                 <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" OnClientClick="return confirm('Click OK per cancellare.');" 
                                                     CommandName="Delete" CommandArgument='<%#Eval("ServiceId") %>'>
-                                                    <i class="fa fa-trash style="font-size:25px""></i>
+                                                    <i class="fa fa-trash" style="font-size:25px"></i>
                                                 </asp:LinkButton>
                                             </td>
                                         </tr>
@@ -220,6 +232,7 @@
     <script type="text/javascript">
         function MyFun() {
             $("#ComboRoom").select2({ theme: 'bootstrap' });
+            $("#ComboService").select2({ theme: 'bootstrap' });
         }
 
         $(function () {
@@ -235,6 +248,7 @@
                 autoclose: true
             });
 
+            $("#ComboGrandService").select2({ theme: 'bootstrap' });
             $("#ComboService").select2({ theme: 'bootstrap' });
             $("#ComboOwner").select2({ theme: 'bootstrap' });
             $("#ComboRoom").select2({ theme: 'bootstrap' });

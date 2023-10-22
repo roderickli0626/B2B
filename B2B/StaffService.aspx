@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StaffPage.master" AutoEventWireup="true" CodeBehind="StaffService.aspx.cs" Inherits="B2B.StaffService" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StaffHeaderPlaceHolder" runat="server">
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/select2.css" />
+    <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
+    <style>
+        .select2-selection.select2-selection--single {
+            box-shadow: none !important;
+            border: none;
+        }
+        .select2.select2-container.select2-container--bootstrap {
+            margin-left: -3px !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="StaffContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-10 pb-lg-5">
@@ -16,7 +27,13 @@
                             <i class="fa fa-plus mr-sm"></i> Agg.
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-6 col-md-4 col-0"></div>
+                        <div class="col-lg-2 col-md-2 col-0"></div>
+                        <div style="float: right; position: relative; z-index: 1;" class="col-lg-4 col-md-4 col-12">
+                            <div class="input-group align-items-center" style="height: 52px">
+                                <label for="status">Grande Servizio: </label>
+                                <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                            </div>
+                        </div>
                         <div style="float: right; position: relative; z-index: 1;" class="col-lg-3 col-md-3 col-12">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Cerca: </label>
@@ -29,6 +46,7 @@
                         <thead>
                             <tr>
                                 <th>Foto</th>
+                                <th>Grande Servizio</th>
                                 <th>Servizio</th>
                                 <th>Descrizione</th>
                                 <th>Prezzo</th>
@@ -45,6 +63,7 @@
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="StaffFooterPlaceHolder" runat="server">
+    <script src="Scripts/select2.js"></script>
     <script src="Scripts/jquery.dataTables.js"></script>
     <script src="Scripts/datatables.js"></script>
     <script type="text/javascript">
@@ -63,11 +82,13 @@
                         return '<image src="' + ((data == "" || data == null) ? "Content/Images/service_default.jpg" : "Upload/Service/" + data) + '" style="height: 100px;width:100px;" />';
                     }
                 }, {
+                    "data": "GrandService",
+                }, {
                     "data": "DescriptionShort",
-                    "width": "15%"
+                    "width": "10%"
                 }, {
                     "data": "DescriptionLong",
-                    "width": "45%",
+                    "width": "30%",
                     "render": function (data, type, row, meta) {
                         return '<label class="text-black" title="' + data + '">' + data.substring(0, 50) + '</label>';
                     }
@@ -90,12 +111,19 @@
 
                 "fnServerParams": function (aoData) {
                     aoData.searchVal = $('#TxtSearch').val();
+                    aoData.grandServiceID = $('#ComboGrandService').val();
                 }
+            });
+
+            $('#ComboGrandService').change(function () {
+                datatable.fnDraw();
             });
 
             $('#TxtSearch').on('input', function () {
                 datatable.fnDraw();
             });
+
+            $("#ComboGrandService").select2({ theme: 'bootstrap' }); 
         });
     </script>
 </asp:Content>

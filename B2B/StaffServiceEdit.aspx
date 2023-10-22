@@ -1,5 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StaffPage.master" AutoEventWireup="true" CodeBehind="StaffServiceEdit.aspx.cs" Inherits="B2B.StaffServiceEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StaffHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/select2.css" />
+    <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
+    <style>
+        .select2-selection.select2-selection--single {
+            box-shadow: none !important;
+            border: none;
+        }
+        .select2.select2-container.select2-container--bootstrap {
+            margin-left: -3px !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="StaffContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5">
@@ -13,6 +24,7 @@
                     <asp:ValidationSummary ID="ValSummary" runat="server" CssClass="col-sm-12 asp-validation-message" />
                     <asp:RequiredFieldValidator ID="ReqValTitle" runat="server" ErrorMessage="Please enter Title." ControlToValidate="TxtTitle" Display="None" Enabled="True"></asp:RequiredFieldValidator>
                     <asp:RequiredFieldValidator ID="ReqValPrice" runat="server" ErrorMessage="Please enter Price." ControlToValidate="TxtPrice" Display="None" Enabled="True"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="ServerValidator0" runat="server" ErrorMessage="Inserire un Grande Servizio." Display="None"></asp:CustomValidator>
                     <asp:CustomValidator ID="ServerValidator" runat="server" ErrorMessage="Save Failed." Display="None"></asp:CustomValidator>
                 </div>
 
@@ -22,9 +34,19 @@
                         <asp:FileUpload runat="server" ID="ImageFile" ClientIDMode="Static" CssClass="hidden-input" />
                     </div>
                     <div class="col-lg-8 col-md-8 col-8">
-                        <div class="input-group align-items-center">
-                            <label for="status">Titolo: </label>
-                            <asp:TextBox ID="TxtTitle" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="input-group align-items-center" style="height: 52px">
+                                    <label for="status">Grande Servizio: </label>
+                                    <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="input-group align-items-center">
+                                    <label for="status">Titolo: </label>
+                                    <asp:TextBox ID="TxtTitle" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
+                                </div>
+                            </div>
                         </div>
                         <div class="input-group align-items-center">
                             <label for="status">Descrizione: </label>
@@ -56,6 +78,7 @@
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="StaffFooterPlaceHolder" runat="server">
+    <script src="Scripts/select2.js"></script>
     <script type="text/javascript">
         $(function () {
             var textarea = $('#TxtDescription');
@@ -82,7 +105,9 @@
 
                     reader.readAsDataURL(input.files[0]);
                 }
-            }
+            };
+
+            $("#ComboGrandService").select2({ theme: 'bootstrap' });
         });
     </script>
 </asp:Content>

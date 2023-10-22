@@ -23,6 +23,13 @@ namespace B2B.DAO
                 u =>
                 u.Id == id).FirstOrDefault();
         }
+        public List<Service> FindByGrandService(int grandServcieID)
+        {
+            Table<Service> table = GetContext().Services;
+            return table.Where(
+                u =>
+                u.GrandServiceID == grandServcieID).ToList();
+        }
 
         public bool Insert(Service service)
         {
@@ -53,11 +60,15 @@ namespace B2B.DAO
             return true;
         }
 
-        public IQueryable<Service> SearchBy(string search)
+        public IQueryable<Service> SearchBy(string search, int grandServiceID)
         {
             Table<Service> table = GetContext().Services;
 
             IQueryable<Service> result = table.Where(u => u.DescriptionShort.Contains(search));
+            if (grandServiceID != 0)
+            {
+                result = result.Where(r => r.GrandServiceID == grandServiceID);
+            }
             return result;
         }
     }

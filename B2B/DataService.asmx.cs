@@ -330,12 +330,12 @@ namespace B2B
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
-        public void FindServices(int draw, int start, int length, string searchVal)
+        public void FindServices(int draw, int start, int length, string searchVal, int grandServiceID)
         {
             if (!loginSystem.IsAdminLoggedIn() && !loginSystem.IsStaffLoggedIn()) return;
 
             ServiceController serviceController = new ServiceController();
-            SearchResult searchResult = serviceController.SearchBy(start, length, searchVal);
+            SearchResult searchResult = serviceController.SearchBy(start, length, searchVal, grandServiceID);
 
             JSDataTable result = new JSDataTable();
             result.data = (IEnumerable<object>)searchResult.ResultList;

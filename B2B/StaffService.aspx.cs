@@ -1,4 +1,6 @@
 ﻿using B2B.Controller;
+using B2B.DAO;
+using B2B.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,17 @@ namespace B2B
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+
+            if (!IsPostBack)
+            {
+                LoadGrandService();
+            }
+        }
+        private void LoadGrandService()
+        {
+            List<GrandService> list = new GrandServiceDAO().FindAll();
+            ComboGrandService.Items.Clear();
+            ControlUtil.DataBind(ComboGrandService, list, "Id", "Title", 0, "Tutte");
         }
         protected void BtnAdd_Click(object sender, EventArgs e)
         {

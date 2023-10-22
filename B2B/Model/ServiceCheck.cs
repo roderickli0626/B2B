@@ -60,5 +60,13 @@ namespace B2B.Model
                 return service == null ? false : service.HavePriceGroup ?? false;
             }
         }
+
+        public string GrandService
+        {
+            get
+            {
+                return service == null ? "" : service.GrandService.Title;
+            }
+        }
     }
 }

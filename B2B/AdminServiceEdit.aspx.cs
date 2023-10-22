@@ -1,4 +1,5 @@
 ﻿using B2B.Controller;
+using B2B.DAO;
 using B2B.Util;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,18 @@ namespace B2B
 
             if (!IsPostBack)
             {
+                LoadGrandService();
                 if (editItemId != 0)
                 {
                     LoadInfo();
                 }
             }
         }
-
+        private void LoadGrandService()
+        {
+            List<GrandService> grandServiceList = new GrandServiceDAO().FindAll();
+            ControlUtil.DataBind(ComboGrandService, grandServiceList, "Id", "Title", 0, "");
+        }
         private void LoadInfo()
         {
             if (editService == null) { return; }
@@ -48,6 +54,7 @@ namespace B2B
             TxtTitle.Text = editService.DescriptionShort;
             TxtDescription.Text = editService.DescriptionLong;
             TxtPrice.Text = editService.Price.ToString();
+            ControlUtil.SelectValue(ComboGrandService, editService.GrandServiceID);
 
             if (editService.HavePriceGroup == true) RadioButton1.Checked = true;
             else RadioButton2.Checked = true;
@@ -65,6 +72,12 @@ namespace B2B
             string descriptionShort = TxtTitle.Text;
             string descriptionLong = TxtDescription.Text;
             double price = ParseUtil.TryParseDouble(TxtPrice.Text) ?? 0;
+            int? grandServiceID = ControlUtil.GetSelectedValue(ComboGrandService);
+            if (grandServiceID == null)
+            {
+                ServerValidator0.IsValid = false;
+                return;
+            }
 
             bool havePriceGroup = false;
 
@@ -77,7 +90,7 @@ namespace B2B
             //Image Save
             string imageTitle = UploadImage();
             if (editService != null && !string.IsNullOrEmpty(editService.Image) && imageTitle == "") { imageTitle = editService.Image; }
-            success = serviceController.SaveService(id, descriptionShort, descriptionLong, price, imageTitle, havePriceGroup);
+            success = serviceController.SaveService(id, descriptionShort, descriptionLong, price, imageTitle, havePriceGroup, grandServiceID);
 
             if (!success)
             {

@@ -204,6 +204,24 @@ namespace B2B
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl serviceDiv;
 
         /// <summary>
+        /// ComboGrandService control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ComboGrandService;
+
+        /// <summary>
+        /// UpdatePanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
+
+        /// <summary>
         /// ComboService control.
         /// </summary>
         /// <remarks>
