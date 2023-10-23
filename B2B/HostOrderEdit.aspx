@@ -1,5 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HostPage.master" AutoEventWireup="true" CodeBehind="HostOrderEdit.aspx.cs" Inherits="B2B.HostOrderEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HostHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/select2.css" />
+    <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
+    <style>
+        .accessoryImage {
+            transition: transform .2s; /* Animation */
+            width: 100px;
+            height: 100px;
+        }
+
+        .accessoryImage:hover {
+            transform: scale(2.0);
+        }
+
+        .select2-selection.select2-selection--single {
+            box-shadow: none !important;
+            border: none;
+        }
+        .select2.select2-container.select2-container--bootstrap {
+            margin-left: -3px !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="HostContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5 bg-black bg-opacity-50">
@@ -67,21 +88,38 @@
                 </div>
                 <div>
                     <div class="row" runat="server" id="serviceDiv">
-                        <div class="col-lg-6 col-md-6 col-6">
+                        <div class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Servizio: </label>
-                                <asp:DropDownList ID="ComboService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                                <label for="status">Grande Servizio: </label>
+                                <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" 
+                                    ClientIDMode="Static" CausesValidation="false" AutoPostBack="true" OnSelectedIndexChanged="ComboGrandService_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3">
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <asp:UpdatePanel ID="UpdatePanel4" runat="server" class="input-group align-items-center" style="height: 52px">
+                                <ContentTemplate>
+                                    <label for="status">Servizio: </label>
+                                    <asp:DropDownList ID="ComboService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="ComboGrandService" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-6">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Q.tà: </label>
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3" style="text-align: right">
+                        <div class="col-lg-2 col-md-2 col-3 ms-auto" style="text-align: right">
                             <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
                             <i class="fa fa-plus mr-sm"></i> Agg. Servizio
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-3" style="text-align: right" runat="server" id="RecoverDiv" visible="false">
+                            <asp:LinkButton ID="BtnRecoverService" runat="server" CausesValidation="false" OnClick="BtnRecoverService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white" ToolTip="Same as previous?">
+                            <i class="fa fa-refresh mr-sm"></i>
                             </asp:LinkButton>
                         </div>
                     </div>
@@ -140,6 +178,7 @@
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="BtnAddService" />
+                            <asp:AsyncPostBackTrigger ControlID="BtnRecoverService" />
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
@@ -159,6 +198,7 @@
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="BtnAddService" />
+                                <asp:AsyncPostBackTrigger ControlID="BtnRecoverService" />
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>
@@ -191,7 +231,8 @@
                         <asp:Button ID="BtnCheckVoucher" runat="server" Text="Voucher Check" CausesValidation="False" Width="100%" CssClass="btn btn-lg btn-primary" OnClick="BtnCheckVoucher_Click" />
                     </div>
                     <div class="col-lg-3 col-md-3 col-3">
-                        <asp:Button ID="Paypal" runat="server" ClientIDMode="Static" Text="Payment" Width="100%" CssClass="btn btn-lg bg-success text-white" OnClick="Paypal_ServerClick" OnClientClick="ShowInfo()" />
+                        <asp:Button ID="Paypal0" runat="server" ClientIDMode="Static" Text="Payment" Width="100%" CssClass="btn btn-lg bg-success text-white" />
+                        <asp:Button ID="Paypal" runat="server" ClientIDMode="Static" Text="Payment" Width="100%" CssClass="btn btn-lg bg-success text-white d-none" OnClick="Paypal_ServerClick" OnClientClick="ShowInfo()" />
                         <%--<a href="#" runat="server" id="Paypal" onserverclick="Paypal_ServerClick" class="btn btn-lg bg-success text-white" style="width:100%;">Payment</a>--%>
                     </div>
                 </div>
@@ -201,15 +242,66 @@
                 </div>
             </div>
         </section>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header pl-5">
+                    <h4 class="modal-title">PAYMENT TYPE</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body p-lg-2">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelForModal">
+                        <ContentTemplate>
+                            <asp:HiddenField ID="HfPaymentType" runat="server" ClientIDMode="Static" />
+                            <asp:RadioButtonList ID="PaymentType" CssClass="mx-auto" Style="font-size: 22px;" runat="server">
+                                <asp:ListItem Text="Contanti" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Bonifico" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Paypal" Value="3" Selected="True"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="BtnOK" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer p-lg-3 justify-content-around">
+                    <asp:Button runat="server" ID="BtnOK" ClientIDMode="Static" CssClass="btn btn-lg btn-success mr-5" Text="OK" OnClick="BtnOK_Click" />
+                    <asp:Button runat="server" ID="BtnClose" ClientIDMode="Static" Text="CANCEL" CssClass="btn btn-lg btn-dark" />
+                </div>
+            </div>
+        </div>
+    </div>
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HostFooterPlaceHolder" runat="server">
+    <script src="Scripts/select2.js"></script>
     <script type="text/javascript">
+        $("#BtnClose").click(function () {
+            $("#myModal").modal('hide');
+            return false;
+        });
+
+        $("#Paypal0").click(function () {
+            $("#myModal").modal('show');
+            return false;
+        });
+
+        function MyFun() {
+            $("#ComboService").select2({ theme: 'bootstrap' });
+        }
+
         function ShowInfo() {
+            $("#myModal").modal('hide');
+
             if ($("#HfVoucherID").val() == "") return true;
             else {
                 var total = $("#TxtTotalAmount").val();
-                var voucher = $("#HfVoucherAmount").val()
+                var voucher = $("#HfVoucherAmount").val();
                 var message = "";
                 if (total == voucher) {
                     message = "Totale Ordine €" + total + " dei quali €" + voucher + " detratti dal Voucher prepagato.";
@@ -235,6 +327,7 @@
             });
 
             $("#ComboRoom").select2({ theme: 'bootstrap' });
+            $("#ComboGrandService").select2({ theme: 'bootstrap' });
             $("#ComboService").select2({ theme: 'bootstrap' }); 
             $("#ComboAssignedTo").select2({ theme: 'bootstrap' }); 
         })

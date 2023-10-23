@@ -54,6 +54,7 @@ namespace B2B
                     HfServiceAlloc.Value = jsonString;
                     TxtTotalAmount.Text = editOrder.TotalAmount.ToString();
                 }
+                LoadGrandService();
                 LoadService();
                 LoadServiceTable();
                 LoadEmployee();
@@ -62,7 +63,11 @@ namespace B2B
                 SetVisible();
             }
         }
-
+        private void LoadGrandService()
+        {
+            List<GrandService> grandList = new GrandServiceDAO().FindAll();
+            ControlUtil.DataBind(ComboGrandService, grandList, "Id", "Title", 0, "");
+        }
         private void SetVisible()
         {
             if (editOrder == null)
@@ -70,6 +75,7 @@ namespace B2B
                 pageTitle.InnerText = "Ordine (nuovo)";
                 paymentDiv.Visible = false;
                 assignDiv.Visible = false;
+                RecoverDiv.Visible = true;
             }
             else if (editOrder.Status == 1)
             {
@@ -179,10 +185,12 @@ namespace B2B
 
         private void LoadService()
         {
+            int grandServiceID = ControlUtil.GetSelectedValue(ComboGrandService) ?? 0;
             List<Service> services = new List<Service>();
-            services = serviceDAO.FindAll();
-            ComboService.Items.Clear();
-            ControlUtil.DataBind(ComboService, services, "Id", "DescriptionShort", 0, "");
+            services = serviceDAO.FindByGrandService(grandServiceID);
+
+            ControlUtil.DataBind(ComboService, services, "Id", "DescriptionShort");
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
         }
         private void LoadServiceTable()
         {
@@ -192,6 +200,8 @@ namespace B2B
 
         protected void BtnAddService_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
+
             int? addServiceId = ControlUtil.GetSelectedValue(ComboService);
             int? quantity = ParseUtil.TryParseInt(TxtQuantity.Text.Trim());
             int? roomId = ControlUtil.GetSelectedValue(ComboRoom);
@@ -279,33 +289,56 @@ namespace B2B
                 int? paymentID = null;
                 if (isPaid)
                 {
-                    status = 2;
-                    double voucherAmount = 0;
-                    if (HfVoucherID.Value != "")
+                    if (HfPaymentType.Value == "3")
                     {
-                        voucherID = ParseUtil.TryParseInt(HfVoucherID.Value) ?? 0;
-                        if (voucherID != 0)
+                        status = 2;
+                        double voucherAmount = 0;
+                        if (HfVoucherID.Value != "")
                         {
-                            Voucher voucher = voucherDAO.FindById(voucherID ?? 0);
-                            voucherAmount = voucher.Amount ?? 0;
-                            if (voucherAmount >= ParseUtil.TryParseDouble(TxtTotalAmount.Text))
+                            voucherID = ParseUtil.TryParseInt(HfVoucherID.Value) ?? 0;
+                            if (voucherID != 0)
                             {
-                                voucher.Amount = voucherAmount - ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
-                                voucherAmount = ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                Voucher voucher = voucherDAO.FindById(voucherID ?? 0);
+                                voucherAmount = voucher.Amount ?? 0;
+                                if (voucherAmount >= ParseUtil.TryParseDouble(TxtTotalAmount.Text))
+                                {
+                                    voucher.Amount = voucherAmount - ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                    voucherAmount = ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                }
+                                else
+                                {
+                                    voucher.Amount = 0;
+                                }
+                                voucherDAO.Update(voucher);
                             }
-                            else
-                            {
-                                voucher.Amount = 0;
-                            }
-                            voucherDAO.Update(voucher);
                         }
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
+                        paymentID = new PaymentDAO().Insert2(payment);
                     }
-                    Payment payment = new Payment();
-                    payment.Amount = totalAmount;//TODO Voucher
-                    payment.PaypalTransitionID = HfPaymentID.Value;
-                    payment.DateOfPay = DateTime.Now;
-                    payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
-                    paymentID = new PaymentDAO().Insert2(payment);
+                    else if (HfPaymentType.Value == "2")
+                    {
+                        status = 1;
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Bonifico";
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "Paied with Bonifico.";
+                        paymentID = new PaymentDAO().Insert2(payment);
+                    }
+                    else
+                    {
+                        status = 1;
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Contanti";
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "Paied with Contanti.";
+                        paymentID = new PaymentDAO().Insert2(payment);
+                    }
                 }
 
                 int? id = orderController.AddOrder(status, startDate, endDate, numberOfGuests, totalAmount, hostId, roomId, dateCreated, note, paymentID, voucherID);
@@ -328,34 +361,59 @@ namespace B2B
                 int? paymentID = null;
                 if (isPaid)
                 {
-                    status = 2;
-                    double voucherAmount = 0;
-                    if (HfVoucherID.Value != "")
+                    if (HfPaymentType.Value == "3")
                     {
-                        voucherID = ParseUtil.TryParseInt(HfVoucherID.Value) ?? 0;
-                        if (voucherID != 0)
+                        status = 2;
+                        double voucherAmount = 0;
+                        if (HfVoucherID.Value != "")
                         {
-                            Voucher voucher = voucherDAO.FindById(voucherID ?? 0);
-                            voucherAmount = voucher.Amount ?? 0;
-                            if (voucherAmount >= ParseUtil.TryParseDouble(TxtTotalAmount.Text))
+                            voucherID = ParseUtil.TryParseInt(HfVoucherID.Value) ?? 0;
+                            if (voucherID != 0)
                             {
-                                voucher.Amount = voucherAmount - ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
-                                voucherAmount = ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                Voucher voucher = voucherDAO.FindById(voucherID ?? 0);
+                                voucherAmount = voucher.Amount ?? 0;
+                                if (voucherAmount >= ParseUtil.TryParseDouble(TxtTotalAmount.Text))
+                                {
+                                    voucher.Amount = voucherAmount - ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                    voucherAmount = ParseUtil.TryParseDouble(TxtTotalAmount.Text) ?? 0;
+                                }
+                                else
+                                {
+                                    voucher.Amount = 0;
+                                }
+                                voucherDAO.Update(voucher);
                             }
-                            else
-                            {
-                                voucher.Amount = 0;
-                            }
-                            voucherDAO.Update(voucher);
                         }
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
+                        payment.OrderId = editOrder.Id;
+                        paymentID = new PaymentDAO().Insert2(payment);
                     }
-                    Payment payment = new Payment();
-                    payment.Amount = totalAmount;//TODO Voucher
-                    payment.PaypalTransitionID = HfPaymentID.Value;
-                    payment.DateOfPay = DateTime.Now;
-                    payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
-                    payment.OrderId = editOrder.Id;
-                    paymentID = new PaymentDAO().Insert2(payment);
+                    else if (HfPaymentType.Value == "2")
+                    {
+                        status = 1;
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Bonifico";
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "Paied with Bonifico.";
+                        payment.OrderId = editOrder.Id;
+                        paymentID = new PaymentDAO().Insert2(payment);
+                    }
+                    else
+                    {
+                        status = 1;
+                        Payment payment = new Payment();
+                        payment.Amount = totalAmount;//TODO Voucher
+                        payment.PaypalTransitionID = "Contanti";
+                        payment.DateOfPay = DateTime.Now;
+                        payment.Note = "Paied with Contanti.";
+                        payment.OrderId = editOrder.Id;
+                        paymentID = new PaymentDAO().Insert2(payment);
+                    }
                 }
 
                 success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, 0, note, paymentID, voucherID);
@@ -507,6 +565,43 @@ namespace B2B
             Response.Write("window.open('" + payment.GetApprovalUrl() + "','_blank');");
             Response.Write("</script>");
             //Response.Redirect(payment.GetApprovalUrl());
+        }
+
+        protected void ComboGrandService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadService();
+        }
+
+        protected void BtnRecoverService_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
+
+            List<Order> previousOrders = new OrderDAO().FindByHost(host.Id);
+            if (previousOrders.Count == 0) return;
+            Order previousOrder = previousOrders.Last();
+
+            serviceAllocList = orderController.FindServiceByOrder(previousOrder.Id);
+            string jsonString = JsonConvert.SerializeObject(serviceAllocList);
+            HfServiceAlloc.Value = jsonString;
+            TxtTotalAmount.Text = previousOrder.TotalAmount.ToString();
+
+            LoadServiceTable();
+        }
+
+        protected void BtnOK_Click(object sender, EventArgs e)
+        {
+            string paymentType = PaymentType.SelectedValue;
+            HfPaymentType.Value = paymentType;
+
+            if (paymentType == "3")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Payment with Paypal", "document.getElementById('" + Paypal.ClientID + "').click();", true);
+            }
+            else
+            {
+                Session["IsPaid"] = true;
+                ScriptManager.RegisterStartupScript(this, GetType(), "Hide Modal", "$('#myModal').modal('hide');", true);
+            }
         }
     }
 }
