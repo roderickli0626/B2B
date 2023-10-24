@@ -18,7 +18,7 @@ namespace B2B.Controller
         public SearchResult SearchPayments(DateTime? dateFrom, DateTime? dateTo, int start, int length, string search, int method)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Payment> list = paymentDAO.SearchBy(dateFrom, dateTo, search, method).OrderBy(l => l.Id);
+            IQueryable<Payment> list = paymentDAO.SearchBy(dateFrom, dateTo, search, method).OrderByDescending(l => l.DateOfPay);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 

@@ -291,7 +291,7 @@ namespace B2B
                 int? paymentID = null;
                 if (isPaid)
                 {
-                    if (HfPaymentType.Value == "3")
+                    if (HfPaymentType.Value == "3" || HfPaymentType.Value == "")
                     {
                         status = 2;
                         double voucherAmount = 0;
@@ -366,7 +366,7 @@ namespace B2B
                 int? paymentID = null;
                 if (isPaid)
                 {
-                    if (HfPaymentType.Value == "3")
+                    if (HfPaymentType.Value == "3" || HfPaymentType.Value == "")
                     {
                         status = 2;
                         double voucherAmount = 0;
