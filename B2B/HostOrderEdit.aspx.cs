@@ -316,7 +316,7 @@ namespace B2B
                         }
                         Payment payment = new Payment();
                         payment.Amount = totalAmount;//TODO Voucher
-                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
+                        payment.PaypalTransitionID = (HfPaymentID.Value == "" ? "Voucher" : "Paypal: " + HfPaymentID.Value);
                         payment.DateOfPay = DateTime.Now;
                         payment.Method = 3;
                         payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
@@ -391,7 +391,8 @@ namespace B2B
                         }
                         Payment payment = new Payment();
                         payment.Amount = totalAmount;//TODO Voucher
-                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
+                        payment.PaypalTransitionID = (HfPaymentID.Value == "" ? "Voucher" : "Paypal: " + HfPaymentID.Value);
+                        //payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
                         payment.OrderId = editOrder.Id;
