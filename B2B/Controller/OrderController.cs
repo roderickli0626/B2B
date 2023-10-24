@@ -13,6 +13,7 @@ namespace B2B.Controller
         public OrderDAO orderDao;
         public OrderServiceAllocDAO allocDao;
         public EmploymentDAO employmentDao = new EmploymentDAO();
+        public RoomDAO roomDao = new RoomDAO();
 
         public OrderController()
         {
@@ -23,7 +24,7 @@ namespace B2B.Controller
         public SearchResult SearchOrders(DateTime? dateFrom, DateTime? dateTo, int start, int length, string search, int status)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Order> list = orderDao.SearchBy(dateFrom, dateTo, search, status).OrderBy(l => l.Id);
+            IQueryable<Order> list = orderDao.SearchBy(dateFrom, dateTo, search, status).OrderByDescending(l => l.StartDate);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 
@@ -36,6 +37,7 @@ namespace B2B.Controller
                     Employment employee = employmentDao.FindById(fb.EmploymentId ?? 0);
                     check.EmployeeName = employee.Name;
                 }
+                check.Address = roomDao.FindById(fb.RoomId).Address;
                 checks.Add(check);
             }
             result.ResultList = checks;
@@ -46,7 +48,7 @@ namespace B2B.Controller
         public SearchResult SearchHostOrders(int hostId, DateTime? dateFrom, DateTime? dateTo, int start, int length, string search, int status)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Order> list = orderDao.SearchByHost(hostId, dateFrom, dateTo, search, status).OrderBy(l => l.Id);
+            IQueryable<Order> list = orderDao.SearchByHost(hostId, dateFrom, dateTo, search, status).OrderByDescending(l => l.StartDate);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 
@@ -59,6 +61,7 @@ namespace B2B.Controller
                     Employment employee = employmentDao.FindById(fb.EmploymentId ?? 0);
                     check.EmployeeName = employee.Name;
                 }
+                check.Address = roomDao.FindById(fb.RoomId).Address;
                 checks.Add(check);
             }
             result.ResultList = checks;

@@ -18,7 +18,7 @@ namespace B2B.Controller
         public SearchResult SearchBy(int start, int length, string search, int grandServiceID)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Service> list = serviceDAO.SearchBy(search, grandServiceID).OrderBy(l => l.Id);
+            IQueryable<Service> list = serviceDAO.SearchBy(search, grandServiceID).OrderBy(l => l.GrandService.Title);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 

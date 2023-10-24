@@ -71,5 +71,10 @@ namespace B2B.Model
         {
             get; set;
         }
+
+        public string Address
+        {
+            get; set;
+        }
     }
 }

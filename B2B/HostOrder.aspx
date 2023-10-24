@@ -67,6 +67,7 @@
                                 <th>Nr.</th>
                                 <th>Dal</th>
                                 <th>Al</th>
+                                <th>Indirizzo</th>
                                 <th>Ospiti</th>
                                 <th>Totale</th>
                                 <th>Stato</th>
@@ -106,6 +107,8 @@
                 }, {
                     "data": "EndDate",
                     "type": "date"
+                }, {
+                    "data": "Address"
                 }, {
                     "data": "NumberOfGuests"
                 }, {

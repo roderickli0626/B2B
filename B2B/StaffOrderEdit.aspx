@@ -86,6 +86,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" runat="server" id="statusDiv" visible="false">
+                    <div class="col-lg-4 col-md-4 col-4 mx-auto" runat="server">
+                        <div class="input-group align-items-center">
+                            <label class="col-md-7">Payment Status: </label>
+                            <asp:CheckBox runat="server" ID="PaidStatus" CssClass="form-control radio-custom text-primary" Text="Pagato" />
+                        </div>
+                    </div>
+                </div>
                 <div class="row" runat="server" id="paymentDiv" visible="true">
                     <div class="col-lg-6 col-md-6 col-6">
                         <div class="input-group align-items-center">
@@ -147,12 +155,14 @@
                                         <table class="table table-bordered table-striped text-center">
                                             <thead>
                                                 <tr>
+                                                    <th>Foto</th>
+                                                    <th>Grande Servizio</th>
                                                     <th>Servizio</th>
                                                     <th>Descrizione</th>
                                                     <th>Prezzo</th>
                                                     <th>Q.tà</th>
                                                     <th>Totale</th>
-                                                    <th>Azione</th>
+                                                    <th>Azioni</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -165,6 +175,8 @@
                                                 <%--<img src="" runat="server" width="160" height="160"/>--%>
                                                 <%--Service <%# Eval("ServiceId")%>--%>
                                             </td>
+                                            <td><%# Eval("GrandService")%></td>
+                                            <td><%# Eval("Service")%></td>
                                             <td><%# Eval("Description")%></td>
                                             <td><%# Eval("Price") + " €"%></td>
                                             <td><%# Eval("Quantity")%></td>

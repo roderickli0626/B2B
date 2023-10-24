@@ -220,8 +220,10 @@ namespace B2B
 
             ServiceAllocCheck addService = new ServiceAllocCheck();
             addService.serviceId = addServiceId ?? 0;
-            
-            addService.Description = service.DescriptionShort;
+
+            addService.GrandService = service.GrandService.Title;
+            addService.Service = service.DescriptionShort;
+            addService.Description = service.DescriptionLong;
             addService.Image = service.Image;
             addService.Quantity = quantity ?? 0;
             if (service.HavePriceGroup ?? false)
@@ -582,7 +584,14 @@ namespace B2B
         {
             ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
 
-            List<Order> previousOrders = new OrderDAO().FindByHost(host.Id);
+            int? roomId = ControlUtil.GetSelectedValue(ComboRoom);
+            if (roomId == null)
+            {
+                ServerValidator5.IsValid = false;
+                return;
+            }
+
+            List<Order> previousOrders = new OrderDAO().FindByHost(host.Id).Where(o => o.RoomId == roomId).ToList();
             if (previousOrders.Count == 0) return;
             Order previousOrder = previousOrders.Last();
 

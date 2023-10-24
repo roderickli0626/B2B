@@ -84,6 +84,10 @@ namespace B2B
                 closeDiv.Visible = false;
                 ComboOwner.Enabled = false;
                 ComboRoom.Enabled = false;
+                if (editOrder.Payment != null)
+                {
+                    statusDiv.Visible = true;
+                }
             }
             else if (editOrder.Status == 2)
             {
@@ -183,6 +187,8 @@ namespace B2B
 
         protected void BtnAddService_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
+
             int? addServiceId = ControlUtil.GetSelectedValue(ComboService);
             int? quantity = ParseUtil.TryParseInt(TxtQuantity.Text.Trim());
             int? roomId = ControlUtil.GetSelectedValue(ComboRoom);
@@ -201,8 +207,10 @@ namespace B2B
 
             ServiceAllocCheck addService = new ServiceAllocCheck();
             addService.serviceId = addServiceId ?? 0;
-            
-            addService.Description = service.DescriptionShort;
+
+            addService.GrandService = service.GrandService.Title;
+            addService.Service = service.DescriptionShort;
+            addService.Description = service.DescriptionLong;
             addService.Image = service.Image;
             addService.Quantity = quantity ?? 0;
             if (service.HavePriceGroup ?? false)
@@ -273,8 +281,12 @@ namespace B2B
                     ServerValidator2.IsValid = false;
                     return;
                 }
-
-                success1 = orderController.UpdateOrder(editOrder.Id, 1, startDate, endDate, numberOfGuests, totalAmount, 0, note, null, null);
+                int status = 1;
+                if (editOrder.Payment != null)
+                {
+                    if (PaidStatus.Checked) status = 2;
+                }
+                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, 0, note, null, null);
                 success2 = orderController.AddServiceAlloc(editOrder.Id, serviceAllocList);
             }
             else if (editOrder.Status == 2 || editOrder.Status == 3)

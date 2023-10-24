@@ -168,6 +168,24 @@ namespace B2B
         protected global::System.Web.UI.WebControls.TextBox TxtDateTo;
 
         /// <summary>
+        /// statusDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl statusDiv;
+
+        /// <summary>
+        /// PaidStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox PaidStatus;
+
+        /// <summary>
         /// paymentDiv control.
         /// </summary>
         /// <remarks>

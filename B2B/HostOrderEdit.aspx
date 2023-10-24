@@ -141,6 +141,8 @@
                                         <table class="table table-bordered table-striped text-center bg-white">
                                             <thead>
                                                 <tr>
+                                                    <th>Foto</th>
+                                                    <th>Grande Servizio</th>
                                                     <th>Servizio</th>
                                                     <th>Descrizione</th>
                                                     <th>Prezzo</th>
@@ -157,6 +159,8 @@
                                                 <asp:ImageButton runat="server" ID="ServiceImage" ImageUrl='<%# (Eval("Image") == "" || Eval("Image") == null) ? "Content/Images/service_default.jpg" : "~/Upload/Service/" + Eval("Image") %>' 
                                                     CssClass="accessoryImage" />
                                             </td>
+                                            <td><%# Eval("GrandService")%></td>
+                                            <td><%# Eval("Service")%></td>
                                             <td><%# Eval("Description")%></td>
                                             <td><%# Eval("Price") + " €"%></td>
                                             <td><%# Eval("Quantity")%></td>
@@ -257,8 +261,8 @@
                         <ContentTemplate>
                             <asp:HiddenField ID="HfPaymentType" runat="server" ClientIDMode="Static" />
                             <asp:RadioButtonList ID="PaymentType" CssClass="mx-auto" Style="font-size: 22px;" runat="server">
-                                <asp:ListItem Text="Contanti" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Bonifico" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Contanti" id="Contanti" clientIDMode="Static" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Bonifico" id="Bonifico" clientIDMode="static" Value="2"></asp:ListItem>
                                 <asp:ListItem Text="Paypal" Value="3" Selected="True"></asp:ListItem>
                             </asp:RadioButtonList>
                         </ContentTemplate>
@@ -282,13 +286,35 @@
     <script src="Scripts/select2.js"></script>
     <script type="text/javascript">
         $("#BtnClose").click(function () {
+            $("#Contanti").removeClass("d-none");
+            $("#Bonifico").removeClass("d-none");
             $("#myModal").modal('hide');
             return false;
         });
 
         $("#Paypal0").click(function () {
-            $("#myModal").modal('show');
-            return false;
+            if ($("#HfVoucherID").val() == "") {
+                $("#myModal").modal('show');
+                return false;
+            }
+            else {
+                var total = $("#TxtTotalAmount").val();
+                var voucher = $("#HfVoucherAmount").val();
+
+                if (total == voucher) {
+                    return false;
+                }
+                if (voucher == "0") {
+                    $("#myModal").modal('show');
+                    return false;
+                }
+                else {
+                    $("#myModal").modal('show');
+                    $("#Contanti").addClass("d-none");
+                    $("#Bonifico").addClass("d-none");
+                    return false;
+                }
+            }
         });
 
         function MyFun() {

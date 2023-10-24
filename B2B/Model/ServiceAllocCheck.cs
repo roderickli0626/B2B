@@ -17,11 +17,13 @@ namespace B2B.Model
             if (orderServiceAlloc == null) return;
             Id = orderServiceAlloc.Id;
             serviceId = (int)orderServiceAlloc.ServiceId;
-            Description = orderServiceAlloc.Service.DescriptionShort;
+            Description = orderServiceAlloc.Service.DescriptionLong;
             Image = orderServiceAlloc.Service.Image;
             Price = (double)orderServiceAlloc.Service.Price;
             Quantity = (int)orderServiceAlloc.Quantity;
             Amount = (double)orderServiceAlloc.Amount;
+            GrandService = orderServiceAlloc.Service.GrandService.Title;
+            Service = orderServiceAlloc.Service.DescriptionShort;
         }
 
         public ServiceAllocCheck() { }
@@ -57,6 +59,15 @@ namespace B2B.Model
         }
 
         public double Amount
+        {
+            get; set;
+        }
+
+        public string GrandService
+        {
+            get; set;
+        }
+        public string Service
         {
             get; set;
         }
