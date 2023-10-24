@@ -316,6 +316,7 @@ namespace B2B
                         payment.Amount = totalAmount;//TODO Voucher
                         payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
                         payment.DateOfPay = DateTime.Now;
+                        payment.Method = 3;
                         payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
@@ -327,6 +328,7 @@ namespace B2B
                         payment.PaypalTransitionID = "Bonifico";
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "Paied with Bonifico.";
+                        payment.Method = 2;
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
                     else
@@ -337,6 +339,7 @@ namespace B2B
                         payment.PaypalTransitionID = "Contanti";
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "Paied with Contanti.";
+                        payment.Method = 1;
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
                 }
@@ -390,6 +393,7 @@ namespace B2B
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
                         payment.OrderId = editOrder.Id;
+                        payment.Method = 3;
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
                     else if (HfPaymentType.Value == "2")
@@ -401,6 +405,7 @@ namespace B2B
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "Paied with Bonifico.";
                         payment.OrderId = editOrder.Id;
+                        payment.Method = 2;
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
                     else
@@ -412,6 +417,7 @@ namespace B2B
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "Paied with Contanti.";
                         payment.OrderId = editOrder.Id;
+                        payment.Method = 1;
                         paymentID = new PaymentDAO().Insert2(payment);
                     }
                 }

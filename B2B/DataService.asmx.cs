@@ -259,7 +259,7 @@ namespace B2B
         [WebMethod(EnableSession = true)]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public void FindPayments(int draw, int start, int length,
-            string dateFrom, string dateTo, string searchVal)
+            string dateFrom, string dateTo, int method, string searchVal)
         {
             if (!loginSystem.IsAdminLoggedIn() && !loginSystem.IsStaffLoggedIn()) return;
 
@@ -273,7 +273,7 @@ namespace B2B
                 to = DateTime.ParseExact(dateTo, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             PaymentController paymentController = new PaymentController();
-            SearchResult searchResult = paymentController.SearchPayments(from, to, start, length, searchVal);
+            SearchResult searchResult = paymentController.SearchPayments(from, to, start, length, searchVal, method);
 
             JSDataTable result = new JSDataTable();
             result.data = (IEnumerable<object>)searchResult.ResultList;

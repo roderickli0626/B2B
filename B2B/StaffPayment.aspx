@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StaffPage.master" AutoEventWireup="true" CodeBehind="StaffPayment.aspx.cs" Inherits="B2B.StaffPayment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StaffHeaderPlaceHolder" runat="server">
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/select2.css" />
+    <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
+    <style>
+        .select2-selection.select2-selection--single {
+            box-shadow: none !important;
+            border: none;
+        }
+        .select2.select2-container.select2-container--bootstrap {
+            margin-left: -3px !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="StaffContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-10 pb-lg-5">
@@ -10,7 +21,7 @@
             </header>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="input-group align-items-center">
                             <label for="product-name">Dal: </label>
                             <asp:TextBox ID="TxtDateFrom" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"
@@ -18,11 +29,18 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="input-group align-items-center">
                             <label for="product-name">Al: </label>
                             <asp:TextBox ID="TxtDateTo" CssClass="form-control" runat="server" ClientIDMode="Static"
                                 data-plugin-datepicker="" data-plugin-options='{ "format": "dd/mm/yyyy", "todayHighlight": "true" }'></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="input-group align-items-center" style="height: 52px">
+                            <label for="status">Metodo: </label>
+                            <asp:DropDownList ID="ComboMethod" AutoPostBack="true" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -34,7 +52,10 @@
                             <i class="fa fa-plus mr-sm"></i> Agg.
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-6 col-md-4 col-0"></div>
+                        <div class="col-lg-3 col-md-4 col-0"></div>
+                        <div class="col-lg-3 col-md-2 col-12" style="text-align:right;">
+                            <asp:Button runat="server" ID="BtnDownloadPDF" CssClass="btn btn-warning btn-lg text-white" Text="Download PDF" OnClick="BtnDownloadPDF_Click" />
+                        </div>
                         <div style="float: right; position: relative; z-index: 1;" class="col-lg-3 col-md-3 col-12">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Cerca: </label>
@@ -49,7 +70,7 @@
                                 <th>Num. Ordine ID</th>
                                 <th>Data Pag.</th>
                                 <th>Importo</th>
-                                <th>PayPal Transition ID</th>
+                                <th>Metodo di Pagamento</th>
                                 <th>Azione</th>
                             </tr>
                         </thead>
@@ -99,17 +120,20 @@
                 "fnServerParams": function (aoData) {
                     aoData.dateFrom = $('#TxtDateFrom').val();
                     aoData.dateTo = $('#TxtDateTo').val();
+                    aoData.method = $('#ComboMethod').val();
                     aoData.searchVal = $('#TxtSearch').val();
                 }
             });
 
-            $('#TxtDateFrom, #TxtDateTo').change(function () {
+            $('#ComboMethod, #TxtDateFrom, #TxtDateTo').change(function () {
                 datatable.fnDraw();
             });
 
             $('#TxtSearch').on('input', function () {
                 datatable.fnDraw();
             });
+
+            $("#ComboMethod").select2({ theme: 'bootstrap' }); 
         });
     </script>
 </asp:Content>

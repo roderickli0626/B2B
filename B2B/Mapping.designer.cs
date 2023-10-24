@@ -39,9 +39,6 @@ namespace B2B
     partial void InsertOrderServiceAlloc(OrderServiceAlloc instance);
     partial void UpdateOrderServiceAlloc(OrderServiceAlloc instance);
     partial void DeleteOrderServiceAlloc(OrderServiceAlloc instance);
-    partial void InsertPayment(Payment instance);
-    partial void UpdatePayment(Payment instance);
-    partial void DeletePayment(Payment instance);
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
@@ -69,6 +66,9 @@ namespace B2B
     partial void InsertGrandService(GrandService instance);
     partial void UpdateGrandService(GrandService instance);
     partial void DeleteGrandService(GrandService instance);
+    partial void InsertPayment(Payment instance);
+    partial void UpdatePayment(Payment instance);
+    partial void DeletePayment(Payment instance);
     #endregion
 		
 		public MappingDataContext(string connection) : 
@@ -116,14 +116,6 @@ namespace B2B
 			get
 			{
 				return this.GetTable<OrderServiceAlloc>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Payment> Payments
-		{
-			get
-			{
-				return this.GetTable<Payment>();
 			}
 		}
 		
@@ -196,6 +188,14 @@ namespace B2B
 			get
 			{
 				return this.GetTable<GrandService>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Payment> Payments
+		{
+			get
+			{
+				return this.GetTable<Payment>();
 			}
 		}
 	}
@@ -716,216 +716,6 @@ namespace B2B
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
-	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _OrderId;
-		
-		private System.Nullable<System.DateTime> _DateOfPay;
-		
-		private System.Nullable<double> _Amount;
-		
-		private string _PaypalTransitionID;
-		
-		private string _Note;
-		
-		private EntitySet<Order> _Orders;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnOrderIdChanging(System.Nullable<int> value);
-    partial void OnOrderIdChanged();
-    partial void OnDateOfPayChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateOfPayChanged();
-    partial void OnAmountChanging(System.Nullable<double> value);
-    partial void OnAmountChanged();
-    partial void OnPaypalTransitionIDChanging(string value);
-    partial void OnPaypalTransitionIDChanged();
-    partial void OnNoteChanging(string value);
-    partial void OnNoteChanged();
-    #endregion
-		
-		public Payment()
-		{
-			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderId", DbType="Int")]
-		public System.Nullable<int> OrderId
-		{
-			get
-			{
-				return this._OrderId;
-			}
-			set
-			{
-				if ((this._OrderId != value))
-				{
-					this.OnOrderIdChanging(value);
-					this.SendPropertyChanging();
-					this._OrderId = value;
-					this.SendPropertyChanged("OrderId");
-					this.OnOrderIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfPay", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateOfPay
-		{
-			get
-			{
-				return this._DateOfPay;
-			}
-			set
-			{
-				if ((this._DateOfPay != value))
-				{
-					this.OnDateOfPayChanging(value);
-					this.SendPropertyChanging();
-					this._DateOfPay = value;
-					this.SendPropertyChanged("DateOfPay");
-					this.OnDateOfPayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Float")]
-		public System.Nullable<double> Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaypalTransitionID", DbType="VarChar(50)")]
-		public string PaypalTransitionID
-		{
-			get
-			{
-				return this._PaypalTransitionID;
-			}
-			set
-			{
-				if ((this._PaypalTransitionID != value))
-				{
-					this.OnPaypalTransitionIDChanging(value);
-					this.SendPropertyChanging();
-					this._PaypalTransitionID = value;
-					this.SendPropertyChanged("PaypalTransitionID");
-					this.OnPaypalTransitionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="VarChar(MAX)")]
-		public string Note
-		{
-			get
-			{
-				return this._Note;
-			}
-			set
-			{
-				if ((this._Note != value))
-				{
-					this.OnNoteChanging(value);
-					this.SendPropertyChanging();
-					this._Note = value;
-					this.SendPropertyChanged("Note");
-					this.OnNoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Orders", ThisKey="Id", OtherKey="PaymentId")]
-		public EntitySet<Order> Orders
-		{
-			get
-			{
-				return this._Orders;
-			}
-			set
-			{
-				this._Orders.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Payment = this;
-		}
-		
-		private void detach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Payment = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -960,11 +750,11 @@ namespace B2B
 		
 		private EntitySet<OrderServiceAlloc> _OrderServiceAllocs;
 		
-		private EntityRef<Payment> _Payment;
-		
 		private EntityRef<Voucher> _Voucher;
 		
 		private EntityRef<Host> _Host;
+		
+		private EntityRef<Payment> _Payment;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1001,9 +791,9 @@ namespace B2B
 		public Order()
 		{
 			this._OrderServiceAllocs = new EntitySet<OrderServiceAlloc>(new Action<OrderServiceAlloc>(this.attach_OrderServiceAllocs), new Action<OrderServiceAlloc>(this.detach_OrderServiceAllocs));
-			this._Payment = default(EntityRef<Payment>);
 			this._Voucher = default(EntityRef<Voucher>);
 			this._Host = default(EntityRef<Host>);
+			this._Payment = default(EntityRef<Payment>);
 			OnCreated();
 		}
 		
@@ -1292,40 +1082,6 @@ namespace B2B
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Payment", ThisKey="PaymentId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Payment Payment
-		{
-			get
-			{
-				return this._Payment.Entity;
-			}
-			set
-			{
-				Payment previousValue = this._Payment.Entity;
-				if (((previousValue != value) 
-							|| (this._Payment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Payment.Entity = null;
-						previousValue.Orders.Remove(this);
-					}
-					this._Payment.Entity = value;
-					if ((value != null))
-					{
-						value.Orders.Add(this);
-						this._PaymentId = value.Id;
-					}
-					else
-					{
-						this._PaymentId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Payment");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Voucher_Order", Storage="_Voucher", ThisKey="VoucherId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Voucher Voucher
 		{
@@ -1390,6 +1146,40 @@ namespace B2B
 						this._HostId = default(int);
 					}
 					this.SendPropertyChanged("Host");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Payment", ThisKey="PaymentId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Payment Payment
+		{
+			get
+			{
+				return this._Payment.Entity;
+			}
+			set
+			{
+				Payment previousValue = this._Payment.Entity;
+				if (((previousValue != value) 
+							|| (this._Payment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Payment.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Payment.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._PaymentId = value.Id;
+					}
+					else
+					{
+						this._PaymentId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Payment");
 				}
 			}
 		}
@@ -3322,6 +3112,240 @@ namespace B2B
 		{
 			this.SendPropertyChanging();
 			entity.GrandService = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
+	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _OrderId;
+		
+		private System.Nullable<System.DateTime> _DateOfPay;
+		
+		private System.Nullable<double> _Amount;
+		
+		private string _PaypalTransitionID;
+		
+		private string _Note;
+		
+		private System.Nullable<int> _Method;
+		
+		private EntitySet<Order> _Orders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnOrderIdChanging(System.Nullable<int> value);
+    partial void OnOrderIdChanged();
+    partial void OnDateOfPayChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateOfPayChanged();
+    partial void OnAmountChanging(System.Nullable<double> value);
+    partial void OnAmountChanged();
+    partial void OnPaypalTransitionIDChanging(string value);
+    partial void OnPaypalTransitionIDChanged();
+    partial void OnNoteChanging(string value);
+    partial void OnNoteChanged();
+    partial void OnMethodChanging(System.Nullable<int> value);
+    partial void OnMethodChanged();
+    #endregion
+		
+		public Payment()
+		{
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderId", DbType="Int")]
+		public System.Nullable<int> OrderId
+		{
+			get
+			{
+				return this._OrderId;
+			}
+			set
+			{
+				if ((this._OrderId != value))
+				{
+					this.OnOrderIdChanging(value);
+					this.SendPropertyChanging();
+					this._OrderId = value;
+					this.SendPropertyChanged("OrderId");
+					this.OnOrderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfPay", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateOfPay
+		{
+			get
+			{
+				return this._DateOfPay;
+			}
+			set
+			{
+				if ((this._DateOfPay != value))
+				{
+					this.OnDateOfPayChanging(value);
+					this.SendPropertyChanging();
+					this._DateOfPay = value;
+					this.SendPropertyChanged("DateOfPay");
+					this.OnDateOfPayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Float")]
+		public System.Nullable<double> Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaypalTransitionID", DbType="VarChar(50)")]
+		public string PaypalTransitionID
+		{
+			get
+			{
+				return this._PaypalTransitionID;
+			}
+			set
+			{
+				if ((this._PaypalTransitionID != value))
+				{
+					this.OnPaypalTransitionIDChanging(value);
+					this.SendPropertyChanging();
+					this._PaypalTransitionID = value;
+					this.SendPropertyChanged("PaypalTransitionID");
+					this.OnPaypalTransitionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="VarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this.OnNoteChanging(value);
+					this.SendPropertyChanging();
+					this._Note = value;
+					this.SendPropertyChanged("Note");
+					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Method", DbType="Int")]
+		public System.Nullable<int> Method
+		{
+			get
+			{
+				return this._Method;
+			}
+			set
+			{
+				if ((this._Method != value))
+				{
+					this.OnMethodChanging(value);
+					this.SendPropertyChanging();
+					this._Method = value;
+					this.SendPropertyChanged("Method");
+					this.OnMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Orders", ThisKey="Id", OtherKey="PaymentId")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Payment = this;
+		}
+		
+		private void detach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Payment = null;
 		}
 	}
 }

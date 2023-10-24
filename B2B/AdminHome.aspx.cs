@@ -1,12 +1,19 @@
 ﻿using B2B.Controller;
 using B2B.DAO;
+using B2B.Model;
 using B2B.Util;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using PayPal.Api;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -48,11 +55,11 @@ namespace B2B
         public void LoadStatus()
         {
             ComboStatus.Items.Clear();
-            ComboStatus.Items.Add(new ListItem("Tutti", "0"));
-            ComboStatus.Items.Add(new ListItem("Confermati", "1"));
-            ComboStatus.Items.Add(new ListItem("Pagati", "2"));
-            ComboStatus.Items.Add(new ListItem("Assegnati", "3"));
-            ComboStatus.Items.Add(new ListItem("Chiusi", "4"));
+            ComboStatus.Items.Add(new System.Web.UI.WebControls.ListItem("Tutti", "0"));
+            ComboStatus.Items.Add(new System.Web.UI.WebControls.ListItem("Confermati", "1"));
+            ComboStatus.Items.Add(new System.Web.UI.WebControls.ListItem("Pagati", "2"));
+            ComboStatus.Items.Add(new System.Web.UI.WebControls.ListItem("Assegnati", "3"));
+            ComboStatus.Items.Add(new System.Web.UI.WebControls.ListItem("Chiusi", "4"));
         }
 
         protected void BtnAdd_Click(object sender, EventArgs e)
@@ -154,6 +161,101 @@ namespace B2B
             string searchKey = TxtSearch.Text;
 
             HolidayList = Getholiday(from, to, searchKey, status);
+        }
+
+        protected void BtnDownloadPDF_Click(object sender, EventArgs e)
+        {
+            string search = TxtSearch.Text;
+            string dateFrom = TxtDateFrom.Text;
+            string dateTo = TxtDateTo.Text;
+            int status = ControlUtil.GetSelectedValue(ComboStatus) ?? 0;
+
+            DateTime? from = null;
+            DateTime? to = null;
+            if (!string.IsNullOrEmpty(dateFrom))
+                from = DateTime.ParseExact(dateFrom, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(dateTo))
+                to = DateTime.ParseExact(dateTo, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            List<Order> list = new OrderDAO().SearchBy(from, to, search, status).OrderBy(l => l.Id).ToList();
+            List<object> checks = new List<object>();
+            foreach (Order fb in list)
+            {
+                OrderCheck check = new OrderCheck(fb);
+                if (fb.EmploymentId != null)
+                {
+                    Employment employee = new EmploymentDAO().FindById(fb.EmploymentId ?? 0);
+                    check.EmployeeName = employee.Name;
+                }
+                checks.Add(check);
+            }
+
+            Document document = new Document();
+            document.SetMargins(0, 0, 80, 60);
+            // Save the PDF document to a memory stream
+            MemoryStream stream = new MemoryStream();
+            PdfWriter writer = PdfWriter.GetInstance(document, stream);
+
+            document.Open();
+            PdfPTable table = new PdfPTable(new float[] {40f, 40f, 60f, 60f, 30f, 50f, 60f, 50f});
+            table.TotalWidth = 370f;
+            table.HorizontalAlignment = Element.ALIGN_CENTER;
+
+            table.AddCell("Num.Ordine");
+            table.AddCell("Cliente");
+            table.AddCell("Data Inizio");
+            table.AddCell("Data Fine");
+            table.AddCell("Num. Ospiti");
+            table.AddCell("Totale");
+            table.AddCell("Stato");
+            table.AddCell("Assegnato a");
+            
+            foreach (OrderCheck check in checks)
+            {
+                table.AddCell(check.Id.ToString());
+                table.AddCell(check.Owner);
+                table.AddCell(check.StartDate);
+                table.AddCell(check.EndDate);
+                table.AddCell(check.NumberOfGuests.ToString());
+                table.AddCell(check.TotalAmount.ToString() + " €");
+
+                string status0 = "";
+                switch (check.Status)
+                {
+                    case 0: break;
+                    case 1: status0 = "Confermato"; break;
+                    case 2: status0 = "Pagato"; break;
+                    case 3: status0 = "Assignato"; break;
+                    case 4: status0 = "Chiuso"; break;
+                }
+                table.AddCell(status0);
+                table.AddCell(check.EmployeeName == null ? "" : check.EmployeeName);
+            }
+            document.Add(table);
+
+            // Close the PDF document
+            document.Close();
+            writer.Close();
+
+            // Set the file name and content type
+            string fileName = "Orders.pdf";
+            string contentType = "application/pdf";
+
+            // Clear the response
+            Response.Clear();
+
+            // Set the content type and headers for the response
+            Response.ContentType = contentType;
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+            // Write the contents of the memory stream to the response stream
+            Response.BinaryWrite(stream.ToArray());
+
+            // Close the memory stream and PDF document
+            stream.Close();
+            
+            // End the response
+            Response.End();
         }
     }
 }

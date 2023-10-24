@@ -52,5 +52,13 @@ namespace B2B.Model
                 return payment == null ? "" : payment.PaypalTransitionID;
             }
         }
+
+        public int Method
+        {
+            get
+            {
+                return payment?.Method ?? 0;
+            }
+        }
     }
 }

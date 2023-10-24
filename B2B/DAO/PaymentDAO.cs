@@ -68,14 +68,17 @@ namespace B2B.DAO
             return true;
         }
 
-        public IQueryable<Payment> SearchBy(DateTime? from, DateTime? to, string search)
+        public IQueryable<Payment> SearchBy(DateTime? from, DateTime? to, string search, int method)
         {
             Table<Payment> table = GetContext().Payments;
 
             IQueryable<Payment> result = table.Where(
                 u =>
-                u.PaypalTransitionID.Contains(search));
-            
+                u.PaypalTransitionID.Contains(search) || u.Orders.First().Host.Name.Contains(search));
+
+            if (method != 0)
+                result = result.Where(d => d.Method == method);
+
             if (from != null)
                 result = result.Where(u => u.DateOfPay >= from.Value);
 

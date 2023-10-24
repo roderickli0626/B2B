@@ -3,6 +3,7 @@ using B2B.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -39,8 +40,8 @@ namespace B2B
         {
             if (editVoucher == null)
             {
-                Guid id = Guid.NewGuid();
-                TxtSerialNumberGenerator.Text = id.ToString();
+                //Guid id = Guid.NewGuid();
+                TxtSerialNumberGenerator.Text = GenerateSerialNumber();
                 return;
             }
 
@@ -49,6 +50,35 @@ namespace B2B
             TxtSerialNumberGenerator.Text = editVoucher.SerialNumberGenerator.ToString();
             TxtNote.Text = editVoucher.Note;
         }
+        private string GenerateSerialNumber()
+        {
+            // Create a new StringBuilder
+            StringBuilder sb = new StringBuilder();
+
+            // Create a new Random object
+            Random random = new Random();
+
+            // Generate the first three random characters
+            for (int i = 0; i < 3; i++)
+            {
+                char c = Convert.ToChar(random.Next(97, 123)); // ASCII codes for a-z
+                sb.Append(c);
+            }
+
+            // Append the hyphen
+            sb.Append("-");
+
+            // Generate the next three random characters
+            for (int i = 0; i < 3; i++)
+            {
+                char c = Convert.ToChar(random.Next(97, 123)); // ASCII codes for a-z
+                sb.Append(c);
+            }
+
+            // Return the generated random string
+            return sb.ToString();
+        }
+
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             if (!IsValid) return;
