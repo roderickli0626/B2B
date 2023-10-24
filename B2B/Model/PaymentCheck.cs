@@ -33,7 +33,7 @@ namespace B2B.Model
         {
             get
             {
-                return payment == null ? "" : payment.DateOfPay?.ToString("dd/MM/yyyy hh.mm");
+                return payment == null ? "" : payment.DateOfPay?.ToString("dd/MM/yyyy HH.mm");
             }
         }
 
