@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-6 col-md-8 text-center mx-auto">
+                    <div class="col-lg-6 col-md-8 text-center mx-auto overflow-auto">
                         <div class="hero-section-text">
                           <!--  <small class="section-small-title">Welcome to BnB Host<i class="hero-icon bi-house"></i></small>-->
                             <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS.png" width="500" height="200" >
