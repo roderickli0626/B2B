@@ -316,7 +316,7 @@ namespace B2B
                         }
                         Payment payment = new Payment();
                         payment.Amount = totalAmount;//TODO Voucher
-                        payment.PaypalTransitionID = (HfPaymentID.Value == "" ? "Voucher" : "Paypal: " + HfPaymentID.Value);
+                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
                         payment.DateOfPay = DateTime.Now;
                         payment.Method = 3;
                         payment.Note = "Dal Voucher nr. " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
@@ -391,8 +391,7 @@ namespace B2B
                         }
                         Payment payment = new Payment();
                         payment.Amount = totalAmount;//TODO Voucher
-                        payment.PaypalTransitionID = (HfPaymentID.Value == "" ? "Voucher" : "Paypal: " + HfPaymentID.Value);
-                        //payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
+                        payment.PaypalTransitionID = "Paypal: " + HfPaymentID.Value;
                         payment.DateOfPay = DateTime.Now;
                         payment.Note = "<B>Dal Voucher nr.<B>: " + voucherID + ": " + voucherAmount + " €" + ", Paypal: " + (totalAmount - voucherAmount) + " € ";
                         payment.OrderId = editOrder.Id;
@@ -459,7 +458,7 @@ namespace B2B
             MailMessage Msg = new MailMessage();
             Msg.From = new MailAddress("krandall2005@gmail.com", "BnB Host");// Sender details here, replace with valid value
             Msg.Subject = "Aggiunto un nuovo ORDINE"; // subject of email
-            Msg.To.Add("krandall2005@gmail.com"); //Add Email id, to which we will send email
+            Msg.To.Add("Digraziag286@gmail.com"); //Add Email id, to which we will send email
             Msg.Body = host.Name + " ha appena aggiunto un nuovo ORDINE. Consultare il gestionale per i dettagli.";
             Msg.IsBodyHtml = true;
             Msg.Priority = MailPriority.High;

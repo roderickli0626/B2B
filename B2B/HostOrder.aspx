@@ -64,7 +64,7 @@
                     <table class="table table-bordered table-striped text-center table-hover bg-white" id="order-table">
                         <thead>
                             <tr>
-                                <th>Num. Ordine</th>
+                                <th>Nr.</th>
                                 <th>Dal</th>
                                 <th>Al</th>
                                 <th>Indirizzo</th>
@@ -99,8 +99,7 @@
                 "columns": [{
                     "data": "Id",
                     "render": function (data, type, row, meta) {
-                        //return meta.row + meta.settings._iDisplayStart + 1;
-                        return data;
+                        return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 }, {
                     "data": "StartDate",

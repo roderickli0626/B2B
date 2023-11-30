@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-4">
                         <div class="input-group align-items-center" style="height: 52px">
-                            <label for="status">Price Group: </label>
+                            <label for="status">Listino: </label>
                             <asp:DropDownList ID="ComboPriceGroup" runat="server" CssClass="form-control mr-md" CausesValidation="false" ClientIDMode="Static">
                             </asp:DropDownList>
                         </div>

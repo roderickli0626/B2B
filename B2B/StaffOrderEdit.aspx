@@ -89,7 +89,7 @@
                 <div class="row" runat="server" id="statusDiv" visible="false">
                     <div class="col-lg-4 col-md-4 col-4 mx-auto" runat="server">
                         <div class="input-group align-items-center">
-                            <label class="col-md-7">Payment Status: </label>
+                            <label class="col-md-7">Stato Pagamento: </label>
                             <asp:CheckBox runat="server" ID="PaidStatus" CssClass="form-control radio-custom text-primary" Text="Pagato" />
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="row" runat="server" id="serviceDiv">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Grande Servizio: </label>
+                                <label for="status">Categoria Servizio: </label>
                                 <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" 
                                     ClientIDMode="Static" CausesValidation="false" AutoPostBack="true" OnSelectedIndexChanged="ComboGrandService_SelectedIndexChanged"></asp:DropDownList>
                             </div>
@@ -156,7 +156,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Foto</th>
-                                                    <th>Grande Servizio</th>
+                                                    <th>Categoria Servizio</th>
                                                     <th>Servizio</th>
                                                     <th>Descrizione</th>
                                                     <th>Prezzo</th>

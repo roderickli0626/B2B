@@ -72,7 +72,7 @@ namespace B2B
             MailMessage Msg = new MailMessage();
             Msg.From = new MailAddress("Krandall2005@gmail.com", "BnB Host");// Sender details here, replace with valid value
             Msg.Subject = "Un nuovo CLIENTE si è registrato"; // subject of email
-            Msg.To.Add("krandall2005@gmail.com"); //Add Email id, to which we will send email
+            Msg.To.Add("Digraziag286@gmail.com"); //Add Email id, to which we will send email
             Msg.Body = email + " è stato aggiunto al gestionale.";
             Msg.IsBodyHtml = true;
             Msg.Priority = MailPriority.High;

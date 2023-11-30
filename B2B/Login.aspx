@@ -6,7 +6,7 @@
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
         <div class="container">
            <!-- <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a>-->
-            <img src="Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
+            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,8 @@
                     <div class="col-lg-6 col-8 text-center mx-auto">
                         <div class="hero-section-text">
                           <!--  <small class="section-small-title">Welcome to BnB Host<i class="hero-icon bi-house"></i></small>-->
-                            <img src="Content/Images/Logo_BNB_HOSTS.png" width="500" height="200" >
-                            <h1 class="hero-title text-white mt-2 mb-4">Super Services for You</h1>
+                            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS.png" width="500" height="200" >
+                         <h1 class="hero-title text-white mt-2 mb-4">ACCESSO</h1>
 
                             <form class="custom-form hero-form" id="form1" runat="server" autocomplete="off">
                                 <div class="row">
@@ -58,9 +58,9 @@
                             </form>
 
 
-                            <div class="hero-btn d-flex justify-content-center align-items-center">
+                      <!--      <div class="hero-btn d-flex justify-content-center align-items-center">
                                 <a class="bi-arrow-down hero-btn-link smoothscroll" href="#section_2"></a>
-                            </div>
+                            </div>    -->
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
             </div>
         </section>
 
-        <section class="about-section section-padding" id="section_2">
+ <!--       <section class="about-section section-padding" id="section_2">
             <div class="container">
                 <div class="row align-items-center">
 
@@ -92,9 +92,9 @@
 
                 </div>
             </div>
-        </section>
+        </section>   -->
 
-        <section class="shop-section section-padding" id="section_3">
+ <!--       <section class="shop-section section-padding" id="section_3">
             <div class="container">
                 <div class="row">
 
@@ -256,7 +256,7 @@
 
                 </div>
             </div>
-        </section>
+        </section>  -->
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#36363e" fill-opacity="1" d="M0,96L40,117.3C80,139,160,181,240,186.7C320,192,400,160,480,149.3C560,139,640,149,720,176C800,203,880,245,960,250.7C1040,256,1120,224,1200,229.3C1280,235,1360,277,1400,298.7L1440,320L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
@@ -267,7 +267,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
                   <!--  <h3><a href="index.html" class="custom-link mb-1">BnB Host</a></h3>-->
-                    <a href="login.aspx"> <img src="Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
+                    <a href="login.aspx"> <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
 
                     <p class="text-white">Da oggi una nuova realtà è presente a Napoli</p>
 

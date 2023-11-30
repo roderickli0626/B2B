@@ -6,7 +6,7 @@
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
         <div class="container">
             <!-- <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a>-->
-            <img src="Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
+            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,8 +22,8 @@
                     <div class="col-lg-6 col-8 text-center mx-auto">
                         <div class="hero-section-text">
                             <!-- <small class="section-small-title">Welcome to BnB Host <i class="hero-icon bi-house"></i></small>-->
-                            <img src="Content/Images/Logo_BNB_HOSTS_staff.png" width="500" height="200" >
-                            <h1 class="hero-title text-white mt-2 mb-4">Elenco Ordini per te</h1>
+                            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_staff.png" width="500" height="200" >
+                            <h1 class="hero-title text-white mt-2 mb-4">ACCESSO COLLABORATORI</h1>
 
                             <form class="custom-form hero-form" id="form1" runat="server" autocomplete="off">
                                 <div class="row">
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
                     <!-- <h3><a href="index.html" class="custom-link mb-1">BnB Host</a></h3>-->
-                    <a href="login.aspx"> <img src="Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
+                    <a href="login.aspx"> <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
 
                     <p class="text-white">Since 2023, We started services for room rental</p>
 
@@ -99,7 +99,7 @@
                     <p class="text-white mb-0">
                         <i class="bi-envelope me-1"></i>
 
-                        <a href="mailto:info@bnbhost.it" class="text-white">info@bnbhost.it
+                        <a href="mailto:info@bnbhost.it" class="text-white">info@bnbhosts.it
                         </a>
                     </p>
                 </div>

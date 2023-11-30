@@ -43,7 +43,7 @@ namespace B2B
         {
             if (grandService == null) { return; }
 
-            pageTitle.InnerText = "GRANDE SERVIZI (modifica)";
+            pageTitle.InnerText = "CATEGORIA SERVIZI (modifica)";
             TxtTitle.Text = grandService.Title;
             TxtDescription.Text = grandService.Description;
         }

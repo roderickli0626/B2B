@@ -24,7 +24,7 @@
                     <asp:ValidationSummary ID="ValSummary" runat="server" CssClass="col-sm-12 asp-validation-message" />
                     <asp:RequiredFieldValidator ID="ReqValTitle" runat="server" ErrorMessage="Inserire un titolo." ControlToValidate="TxtTitle" Display="None" Enabled="True"></asp:RequiredFieldValidator>
                     <asp:RequiredFieldValidator ID="ReqValPrice" runat="server" ErrorMessage="Inserire il prezzo." ControlToValidate="TxtPrice" Display="None" Enabled="True"></asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="ServerValidator0" runat="server" ErrorMessage="Inserire un Grande Servizio." Display="None"></asp:CustomValidator>
+                    <asp:CustomValidator ID="ServerValidator0" runat="server" ErrorMessage="Inserire una Categoria Servizio." Display="None"></asp:CustomValidator>
                     <asp:CustomValidator ID="ServerValidator" runat="server" ErrorMessage="Salvataggio Fallito." Display="None"></asp:CustomValidator>
                 </div>
 
@@ -37,7 +37,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="input-group align-items-center" style="height: 52px">
-                                    <label for="status">Grande Servizio: </label>
+                                    <label for="status">Categoria Servizio: </label>
                                     <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                                 </div>
                             </div>

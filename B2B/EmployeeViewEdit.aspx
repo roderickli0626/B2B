@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
         <div class="container">
           <!--   <a class="navbar-brand" href="javascript:;">BnB <span class="tooplate-green">Host</span></a>-->
-            <img src="Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
+            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS.png" width="110" height="50" >
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -196,7 +196,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-12 mb-3">
                     <!-- <h3><a href="index.html" class="custom-link mb-1">BnB Host</a></h3>-->
-                    <a href="login.aspx"> <img src="Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
+                    <a href="login.aspx"> <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_invertito.png" width="110" height="50" > </a>
 
                     <p class="text-white">Since 2023, We started services for room rental</p>
 

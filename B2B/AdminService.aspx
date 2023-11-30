@@ -30,7 +30,7 @@
                         <div class="col-lg-2 col-md-2 col-0"></div>
                         <div style="float: right; position: relative; z-index: 1;" class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Grande Servizio: </label>
+                                <label for="status">Categoria Servizio: </label>
                                 <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th>Foto</th>
-                                <th>Grande Servizio</th>
+                                <th>Categoria Servizio</th>
                                 <th>Servizio</th>
                                 <th>Descrizione</th>
                                 <th>Prezzo</th>

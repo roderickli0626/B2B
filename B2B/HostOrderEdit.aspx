@@ -90,7 +90,7 @@
                     <div class="row" runat="server" id="serviceDiv">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Grande Servizio: </label>
+                                <label for="status">Categoria Servizio: </label>
                                 <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" 
                                     ClientIDMode="Static" CausesValidation="false" AutoPostBack="true" OnSelectedIndexChanged="ComboGrandService_SelectedIndexChanged"></asp:DropDownList>
                             </div>
@@ -112,14 +112,14 @@
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-3 ms-auto" style="text-align: right">
+                        <div class="col-lg-2 col-md-2 col-3 ms-auto" >
                             <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
-                            <i class="fa fa-plus mr-sm"></i> Agg. Servizio
+                            <i class="fa fa-plus mr-sm"></i> Aggiungi
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-3" style="text-align: right" runat="server" id="RecoverDiv" visible="false">
-                            <asp:LinkButton ID="BtnRecoverService" runat="server" CausesValidation="false" OnClick="BtnRecoverService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white" ToolTip="Same as previous?">
-                            <i class="fa fa-refresh mr-sm"></i>
+                        <div class="col-lg-1 col-md-1 col-3"  runat="server" id="RecoverDiv" visible="false">
+                            <asp:LinkButton ID="BtnRecoverService" runat="server" CausesValidation="false" OnClick="BtnRecoverService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white" ToolTip="Richiama ordine precedente?">
+                            <i class="fa fa-refresh mr-sm"></i>Richiama
                             </asp:LinkButton>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Foto</th>
-                                                    <th>Grande Servizio</th>
+                                                    <th>Categoria Servizio</th>
                                                     <th>Servizio</th>
                                                     <th>Descrizione</th>
                                                     <th>Prezzo</th>
@@ -252,7 +252,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header pl-5">
-                    <h4 class="modal-title">PAYMENT TYPE</h4>
+                    <h4 class="modal-title">MODALITA' DI PAGAMENTO</h4>
                 </div>
 
                 <!-- Modal body -->
@@ -261,9 +261,9 @@
                         <ContentTemplate>
                             <asp:HiddenField ID="HfPaymentType" runat="server" ClientIDMode="Static" />
                             <asp:RadioButtonList ID="PaymentType" CssClass="mx-auto" Style="font-size: 22px;" runat="server">
-                                <asp:ListItem Text="Contanti" id="Contanti" clientIDMode="Static" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Bonifico" id="Bonifico" clientIDMode="static" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="Paypal" Value="3" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text=" Contanti" id="Contanti" clientIDMode="Static" Value="1"></asp:ListItem>
+                                <asp:ListItem Text=" Bonifico" id="Bonifico" clientIDMode="static" Value="2"></asp:ListItem>
+                                <asp:ListItem Text=" Paypal" Value="3" Selected="True"></asp:ListItem>
                             </asp:RadioButtonList>
                         </ContentTemplate>
                         <Triggers>

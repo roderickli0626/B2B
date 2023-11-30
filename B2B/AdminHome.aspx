@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-lg-3 col-md-4 col-0"></div>
                         <div class="col-lg-3 col-md-2 col-12" style="text-align:right;">
-                            <asp:Button runat="server" ID="BtnDownloadPDF" CssClass="btn btn-warning btn-lg text-white" Text="Download PDF" OnClick="BtnDownloadPDF_Click" />
+                            <asp:Button runat="server" ID="BtnDownloadPDF" CssClass="btn btn-warning btn-lg text-white" Text="Stampa PDF" OnClick="BtnDownloadPDF_Click" />
                         </div>
                         <div style="float: right; position: relative; z-index: 1;" class="col-lg-3 col-md-3 col-12">
                             <div class="input-group align-items-center">

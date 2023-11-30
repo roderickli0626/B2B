@@ -5,7 +5,7 @@
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
-                <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">GRANDE SERVIZI (nuovo)</h2>
+                <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">CATEGORIA SERVIZI (nuovo)</h2>
             </header>
             <div class="container">
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>

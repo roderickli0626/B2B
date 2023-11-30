@@ -71,7 +71,7 @@
                                 <th>Piano</th>
                                 <th>Ascensore</th>
                                 <th>Stato</th>
-                                <th>Price Group</th>
+                                <th>Listino</th>
                                 <th>Azione</th>
                             </tr>
                         </thead>

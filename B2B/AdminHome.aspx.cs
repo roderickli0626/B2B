@@ -201,14 +201,14 @@ namespace B2B
             table.TotalWidth = 370f;
             table.HorizontalAlignment = Element.ALIGN_CENTER;
 
-            table.AddCell("Num.Ordine");
+            table.AddCell("Ord.");
             table.AddCell("Cliente");
             table.AddCell("Data Inizio");
             table.AddCell("Data Fine");
-            table.AddCell("Num. Ospiti");
+            table.AddCell("Ospiti");
             table.AddCell("Totale");
             table.AddCell("Stato");
-            table.AddCell("Assegnato a");
+            table.AddCell("Assegnato");
             
             foreach (OrderCheck check in checks)
             {
