@@ -13,7 +13,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
-    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5">
+    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">PAGAMENTI (nuovo)</h2>
@@ -38,14 +38,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="product-name">Data Pag.nto: </label>
                             <asp:TextBox ID="TxtDateOfPay" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"
                                 data-plugin-datepicker="" data-plugin-options='{ "format": "dd/mm/yyyy", "todayHighlight": "true" }'></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Importo: </label>
                             <asp:TextBox ID="TxtAmount" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="row text-right">
-                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-2 ms-auto" />
-                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/AdminPayment.aspx" CssClass="btn btn-lg btn-secondary col-2 ms-3 me-3" />
+                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-md-2 col-5 ms-auto" />
+                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/AdminPayment.aspx" CssClass="btn btn-lg btn-secondary col-md-2 col-5 ms-3 me-3" />
                 </div>
             </div>
         </section>

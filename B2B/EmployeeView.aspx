@@ -60,7 +60,7 @@
     </nav>
 
     <main style="font-size: 20px; padding-top: 30px" class="bg">
-        <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-10 pb-lg-5 bg-black bg-opacity-50">
+        <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-10 pb-lg-5 bg-black bg-opacity-50">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-white mt-3 mb-4">ORDINI ASSEGNATI</h2>
@@ -68,9 +68,9 @@
             <div class="container">
                 <asp:HiddenField ID="HfEmployeeID" runat="server" ClientIDMode="Static" /> 
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <div class="row mt-lg-5">
+                <div class="row mt-lg-5 mb-2">
                     <div class="col-lg-12 col-md-12 col-12">
-                        <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanel1" class="overflow-auto">
                             <ContentTemplate>
                                 <asp:Calendar ID="Calendar1" runat="server" CssClass="text-center m-auto" BackColor="#FFFFCC" BorderColor="#FFCC66"
                                     BorderWidth="1px" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="12pt"

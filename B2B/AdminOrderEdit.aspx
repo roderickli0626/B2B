@@ -24,7 +24,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
-    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5">
+    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">ORDINI</h2>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="row" runat="server" id="statusDiv" visible="false">
-                    <div class="col-lg-4 col-md-4 col-4 mx-auto" runat="server">
+                    <div class="col-lg-4 col-md-4 mx-auto" runat="server">
                         <div class="input-group align-items-center">
                             <label class="col-md-7">Stato Pagamento: </label>
                             <asp:CheckBox runat="server" ID="PaidStatus" CssClass="form-control radio-custom text-primary" Text="Pagato" />
@@ -95,13 +95,13 @@
                     </div>
                 </div>
                 <div class="row" runat="server" id="paymentDiv" visible="true">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Pagamento: </label>
                             <asp:TextBox ID="TxtPaymentResult" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" ReadOnly="true"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Voucher: </label>
                             <asp:TextBox ID="TxtVoucher" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" ReadOnly="true"></asp:TextBox>
@@ -128,14 +128,14 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-6">
+                        <div class="col-lg-2 col-md-2">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Q.tà: </label>
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-6" style="text-align: right">
-                            <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
+                        <div class="col-lg-2 col-md-2 mb-2" style="text-align: right">
+                            <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white w-100">
                             <i class="fa fa-plus mr-sm"></i> Agg. Servizio
                             </asp:LinkButton>
                         </div>
@@ -202,20 +202,20 @@
                     </asp:UpdatePanel>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-4 me-auto" runat="server" id="assignDiv">
+                    <div class="col-lg-4 col-md-4 me-auto" runat="server" id="assignDiv">
                         <div class="input-group align-items-center" style="height: 52px">
                             <label for="status">Assegnato a: </label>
                             <asp:DropDownList ID="ComboAssignedTo" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-4" runat="server" id="closeDiv">
+                    <div class="col-lg-4 col-md-4" runat="server" id="closeDiv">
                         <div class="input-group align-items-center">
                             <label  class="col-md-3">Chiuso: </label>
                             <asp:RadioButton ID="RadioButton1" runat="server" CssClass="form-control radio-custom text-primary" Text="No" GroupName="ClosedOption" Value="1" Checked="true" />
                             <asp:RadioButton ID="RadioButton2" runat="server" CssClass="form-control radio-custom text-success" Text="Sì" GroupName="ClosedOption" Value="2" />
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-4 ms-auto">
+                    <div class="col-lg-4 col-md-4 ms-auto">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server" class="input-group align-items-center">
                             <ContentTemplate>
                                 <label for="product-name">Totale: </label>
@@ -237,8 +237,8 @@
                     </div>
                 </div>
                 <div class="row text-right">
-                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-2 ms-auto" />
-                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/AdminHome.aspx" CssClass="btn btn-lg btn-secondary col-2 ms-3 me-3" />
+                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-md-2 col-5 ms-auto" />
+                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/AdminHome.aspx" CssClass="btn btn-lg btn-secondary col-md-2 col-5 ms-3 me-3" />
                 </div>
             </div>
         </section>

@@ -23,7 +23,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="HostContentPlaceHolder" runat="server">
-    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5 bg-black bg-opacity-50">
+    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5 bg-black bg-opacity-50">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-white mt-3 mb-4" runat="server" id="pageTitle">ORDINI</h2>
@@ -42,13 +42,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center" style="height: 52px">
                             <label for="status">Room: </label>
                             <asp:DropDownList ID="ComboRoom" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Ospiti: </label>
                             <asp:TextBox ID="TxtNumberOfGuests" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
@@ -73,13 +73,13 @@
                     </div>
                 </div>
                 <div class="row" runat="server" id="paymentDiv" visible="true">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Pagamento Info: </label>
                             <asp:TextBox ID="TxtPaymentResult" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" ReadOnly="true"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label for="status">Voucher: </label>
                             <asp:TextBox ID="TxtVoucher" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" ReadOnly="true"></asp:TextBox>
@@ -106,19 +106,19 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-6">
+                        <div class="col-lg-2 col-md-2">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Q.tà: </label>
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-3 ms-auto" >
-                            <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
+                        <div class="col-lg-2 col-md-2 ms-auto mb-2" >
+                            <asp:LinkButton ID="BtnAddService" runat="server" CausesValidation="false" OnClick="BtnAddService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white w-100">
                             <i class="fa fa-plus mr-sm"></i> Aggiungi
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-3"  runat="server" id="RecoverDiv" visible="false">
-                            <asp:LinkButton ID="BtnRecoverService" runat="server" CausesValidation="false" OnClick="BtnRecoverService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white" ToolTip="Richiama ordine precedente?">
+                        <div class="col-lg-1 col-md-1 mb-2"  runat="server" id="RecoverDiv" visible="false">
+                            <asp:LinkButton ID="BtnRecoverService" runat="server" CausesValidation="false" OnClick="BtnRecoverService_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white w-100" ToolTip="Richiama ordine precedente?">
                             <i class="fa fa-refresh mr-sm"></i>Richiama
                             </asp:LinkButton>
                         </div>
@@ -187,13 +187,13 @@
                     </asp:UpdatePanel>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-6" runat="server" id="assignDiv">
+                    <div class="col-lg-6 col-md-6" runat="server" id="assignDiv">
                         <div class="input-group align-items-center" style="height: 52px">
                             <label for="status">Assegnato: </label>
                             <asp:DropDownList ID="ComboAssignedTo" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6 ms-auto">
+                    <div class="col-lg-6 col-md-6 ms-auto">
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server" class="input-group align-items-center">
                             <ContentTemplate>
                                 <label for="product-name">Totale: </label>
@@ -216,7 +216,7 @@
                     </div>
                 </div>
                 <div class="row" runat="server" id="payDiv">
-                    <div class="col-lg-6 col-md-6 col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="input-group align-items-center">
                             <label>VoucherID: </label>
                             <asp:TextBox ID="TxtVoucherID" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" autocomplete="off"></asp:TextBox>
@@ -231,18 +231,18 @@
                             </asp:UpdatePanel>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-3">
+                    <div class="col-lg-3 col-md-3 mb-2">
                         <asp:Button ID="BtnCheckVoucher" runat="server" Text="Voucher Check" CausesValidation="False" Width="100%" CssClass="btn btn-lg btn-primary" OnClick="BtnCheckVoucher_Click" />
                     </div>
-                    <div class="col-lg-3 col-md-3 col-3">
+                    <div class="col-lg-3 col-md-3 mb-2">
                         <asp:Button ID="Paypal0" runat="server" ClientIDMode="Static" Text="Payment" Width="100%" CssClass="btn btn-lg bg-success text-white" />
                         <asp:Button ID="Paypal" runat="server" ClientIDMode="Static" Text="Payment" Width="100%" CssClass="btn btn-lg bg-success text-white d-none" OnClick="Paypal_ServerClick" OnClientClick="ShowInfo()" />
                         <%--<a href="#" runat="server" id="Paypal" onserverclick="Paypal_ServerClick" class="btn btn-lg bg-success text-white" style="width:100%;">Payment</a>--%>
                     </div>
                 </div>
                 <div class="row text-right">
-                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-2 ms-auto" />
-                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/HostOrder.aspx" CssClass="btn btn-lg btn-secondary col-2 ms-3 me-3" />
+                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-md-2 col-5 ms-auto" />
+                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/HostOrder.aspx" CssClass="btn btn-lg btn-secondary col-md-2 col-5 ms-3 me-3" />
                 </div>
             </div>
         </section>

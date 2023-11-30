@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HostHeaderPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="HostContentPlaceHolder" runat="server">
-    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-8 pb-lg-5 bg-black bg-opacity-50">
+    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5 bg-black bg-opacity-50">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-white mt-3 mb-4" runat="server" id="pageTitle">ROOM</h2>
@@ -19,14 +19,14 @@
                 </div>
 
                 <div class="row mb-4">
-                    <div class="col-lg-6 col-md-6 col-6 mt-auto mb-auto">
+                    <div class="col-lg-6 col-md-6 mt-auto mb-auto">
                         <div class="input-group align-items-center" style="height: 52px">
                             <label for="status">Tipo: </label>
                             <asp:DropDownList ID="ComboType" runat="server" ClientIDMode="Static" AutoPostBack="true" CssClass="form-control mr-md" CausesValidation="false" OnSelectedIndexChanged="ComboType_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6 text-center">
+                    <div class="col-lg-6 col-md-6 text-center">
                         <asp:UpdatePanel runat="server" ID="UpdatePanel3">
                             <ContentTemplate>
                                 <img src="Content/Images/accommodation_default.jpg" runat="server" id="AccommodationImage" class="img-thumbnail" style="height: 200px; width: 250px;" />
@@ -53,19 +53,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-4">
+                    <div class="col-lg-4 col-md-4">
                         <div class="input-group align-items-center">
                             <label for="status">Scala: </label>
                             <asp:TextBox ID="TxtStairCases" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-4">
+                    <div class="col-lg-4 col-md-4">
                         <div class="input-group align-items-center">
                             <label for="status">Piano: </label>
                             <asp:TextBox ID="TxtFloor" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-4">
+                    <div class="col-lg-4 col-md-4">
                         <div class="input-group align-items-center">
                             <label for="status">Note: </label>
                             <asp:TextBox ID="TxtNote" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static"></asp:TextBox>
@@ -74,20 +74,20 @@
                 </div>
                 <div>
                     <div class="row" runat="server" id="accessoryDiv">
-                        <div class="col-lg-6 col-md-6 col-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="input-group align-items-center" style="height: 52px">
                                 <label for="status">Accessori: </label>
                                 <asp:DropDownList ID="ComboAccessory" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3">
+                        <div class="col-lg-3 col-md-3">
                             <div class="input-group align-items-center">
                                 <label for="product-name">Quantità: </label>
                                 <asp:TextBox ID="TxtQuantity" CssClass="form-control mr-sm" runat="server" ClientIDMode="Static" TextMode="Number" min="1"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-3" style="text-align: right">
-                            <asp:LinkButton ID="BtnAddAccessory" runat="server" CausesValidation="false" OnClick="BtnAddAccessory_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white">
+                        <div class="col-lg-3 col-md-3 mb-2" style="text-align: right">
+                            <asp:LinkButton ID="BtnAddAccessory" runat="server" CausesValidation="false" OnClick="BtnAddAccessory_Click" ClientIDMode="Static" CssClass="btn btn-danger btn-lg text-white w-100">
                             <i class="fa fa-plus mr-sm"></i> Agg. Accessori
                             </asp:LinkButton>
                         </div>
@@ -143,8 +143,8 @@
                     </asp:UpdatePanel>
                 </div>
                 <div class="row text-right">
-                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-2 ms-auto" />
-                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/HostHome.aspx" CssClass="btn btn-lg btn-secondary col-2 ms-3 me-3" />
+                    <asp:Button ID="BtnSave" runat="server" Text="Salva" OnClick="BtnSave_Click" CssClass="btn btn-lg btn-warning col-md-2 col-5 ms-auto" />
+                    <asp:Button ID="BtnCancel" runat="server" Text="Annulla" CausesValidation="False" PostBackUrl="~/HostHome.aspx" CssClass="btn btn-lg btn-secondary col-md-2 col-5 ms-3 me-3" />
                 </div>
             </div>
         </section>

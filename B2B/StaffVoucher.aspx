@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="StaffContentPlaceHolder" runat="server">
-    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-10 pb-lg-5">
+    <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-10 pb-lg-5">
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-black-50 mt-3 mb-4">VOUCHERS</h2>
@@ -11,8 +11,8 @@
             <div class="container">
                 <div>
                     <div class="row">
-                        <div style="float: left; position: relative; z-index: 1;" class="col-lg-3 col-md-3 col-12">
-                            <asp:LinkButton ID="BtnAdd" runat="server" CausesValidation="false" OnClick="BtnAdd_Click" CssClass="btn btn-warning btn-lg text-white">
+                        <div style="float: left; position: relative; z-index: 1;" class="col-lg-3 col-md-3 col-12 mb-2">
+                            <asp:LinkButton ID="BtnAdd" runat="server" CausesValidation="false" OnClick="BtnAdd_Click" CssClass="btn btn-warning btn-lg text-white w-100">
                             <i class="fa fa-plus mr-sm"></i> Agg.
                             </asp:LinkButton>
                         </div>
