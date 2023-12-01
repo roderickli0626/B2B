@@ -194,6 +194,7 @@
                 e.preventDefault();
 
                 var row = datatable.fnGetData($(this).closest('tr'));
+                if (row == null) row = datatable.fnGetData($(this));
 
                 if (!confirm("Click OK per cancellare."))
                     return;
