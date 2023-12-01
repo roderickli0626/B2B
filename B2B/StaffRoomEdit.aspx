@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StaffPage.master" AutoEventWireup="true" CodeBehind="StaffRoomEdit.aspx.cs" Inherits="B2B.StaffRoomEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StaffHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
     <style>
         .accessoryImage {
             transition: transform .2s; /* Animation */
@@ -176,8 +178,25 @@
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="StaffFooterPlaceHolder" runat="server">
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script>
-        $(function() {
+        function MyFun() {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+        }
+
+        $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             $("#ComboOwner").select2({ theme: 'bootstrap' });
             $("#ComboType").select2({ theme: 'bootstrap' });
             $("#ComboLift").select2({ theme: 'bootstrap' });

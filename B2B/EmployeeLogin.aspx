@@ -22,7 +22,7 @@
                     <div class="col-lg-6 col-md-8 text-center mx-auto">
                         <div class="hero-section-text">
                             <!-- <small class="section-small-title">Welcome to BnB Host <i class="hero-icon bi-house"></i></small>-->
-                            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_staff.png" width="500" height="200" >
+                            <img src="https://gestionale.bnbhosts.it/Content/Images/Logo_BNB_HOSTS_staff.png" style="max-width: 100%;" height="200" >
                             <h1 class="hero-title text-white mt-2 mb-4">ACCESSO COLLABORATORI</h1>
 
                             <form class="custom-form hero-form" id="form1" runat="server" autocomplete="off">

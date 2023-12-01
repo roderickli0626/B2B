@@ -142,6 +142,8 @@ namespace B2B
 
         protected void BtnAddAccessory_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, Page.GetType(), "Key", "MyFun()", true);
+
             int? addAccessoryId = ControlUtil.GetSelectedValue(ComboAccessory);
             int? quantity = ParseUtil.TryParseInt(TxtQuantity.Text.Trim());
             if (addAccessoryId == null || quantity == null || quantity == 0)

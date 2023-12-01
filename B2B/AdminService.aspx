@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.master" AutoEventWireup="true" CodeBehind="AdminService.aspx.cs" Inherits="B2B.AdminService" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeaderPlaceHolder" runat="server">
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="Content/CSS/select2.css" />
     <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
     <style>
@@ -66,6 +67,7 @@
     <script src="Scripts/select2.js"></script>
     <script src="Scripts/jquery.dataTables.js"></script>
     <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
         $(function () {
             var datatable = $('#service-table').dataTable({
@@ -76,6 +78,7 @@
                 "pageLength": 20,
                 "processing": true,
                 "ordering": false,
+                "responsive": true,
                 "columns": [{
                     "data": "Image",
                     "render": function (data, type, row, meta) {

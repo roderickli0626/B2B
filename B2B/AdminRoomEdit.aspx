@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.master" AutoEventWireup="true" CodeBehind="AdminRoomEdit.aspx.cs" Inherits="B2B.AdminRoomEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="Content/CSS/select2.css" />
     <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
     <style>
@@ -187,8 +189,25 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="AdminFooterPlaceHolder" runat="server">
     <script src="Scripts/select2.js"></script>
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script>
+        function MyFun() {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+        }
+
         $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             $("#ComboOwner").select2({ theme: 'bootstrap' });
             $("#ComboType").select2({ theme: 'bootstrap' }); 
             $("#ComboLift").select2({ theme: 'bootstrap' }); 

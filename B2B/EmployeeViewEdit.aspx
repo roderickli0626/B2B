@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="Content/CSS/theme-custom.css?v=5" />
     <link rel="stylesheet" href="Content/CSS/admin-custom.css" />
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
@@ -273,7 +274,9 @@
     <script src="Scripts/jquery.magnific-popup.js"></script>
     <script src="Scripts/jquery-placeholder.js"></script>
     <script src="Scripts/pnotify.custom.js"></script>
-
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
 
 
     <!-- Theme Base, Components and Settings -->
@@ -290,6 +293,12 @@
 
     <script type="text/javascript">
         $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             window.jQBrowser = getBrowserInfo();
 
             if (!isBootsrapSupported(window.jQBrowser)) {

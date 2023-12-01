@@ -233,6 +233,7 @@
     <Content Include="Content\CSS\magnific-popup.css" />
     <Content Include="Content\CSS\owl.carousel.min.css" />
     <Content Include="Content\CSS\pnotify.custom.css" />
+    <Content Include="Content\CSS\responsive.dataTables.min.css" />
     <Content Include="Content\CSS\select2-bootstrap.css" />
     <Content Include="Content\CSS\select2.css" />
     <Content Include="Content\CSS\staff-custom.css" />
@@ -327,6 +328,7 @@
     <Content Include="Scripts\click-scroll.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\datatables.js" />
+    <Content Include="Scripts\dataTables.responsive.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

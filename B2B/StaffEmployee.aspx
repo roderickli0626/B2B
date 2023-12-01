@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StaffPage.master" AutoEventWireup="true" CodeBehind="StaffEmployee.aspx.cs" Inherits="B2B.StaffEmployee" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StaffHeaderPlaceHolder" runat="server">
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="StaffContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-10 pb-lg-5">
@@ -51,6 +52,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="StaffFooterPlaceHolder" runat="server">
     <script src="Scripts/jquery.dataTables.js"></script>
     <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
         $(function () {
             var datatable = $('#employee-table').dataTable({
@@ -60,6 +62,7 @@
                 "autoWidth": false,
                 "pageLength": 20,
                 "processing": true,
+                "responsive": true,
                 "ordering": false,
                 "columns": [{
                     "data": "Name",

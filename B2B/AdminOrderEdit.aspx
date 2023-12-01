@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.master" AutoEventWireup="true" CodeBehind="AdminOrderEdit.aspx.cs" Inherits="B2B.AdminOrderEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminHeaderPlaceHolder" runat="server">
     <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="Content/CSS/select2.css" />
     <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
     <style>
@@ -248,13 +249,26 @@
     <script src="Scripts/select2.js"></script>
     <script src="Scripts/jquery.dataTables.js"></script>
     <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
         function MyFun() {
             $("#ComboRoom").select2({ theme: 'bootstrap' });
             $("#ComboService").select2({ theme: 'bootstrap' });
+
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
         }
 
         $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             $("#TxtDateFrom").datepicker({
                 autoclose: true
             }).on('changeDate', function (e) {

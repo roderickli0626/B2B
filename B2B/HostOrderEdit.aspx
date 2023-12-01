@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HostPage.master" AutoEventWireup="true" CodeBehind="HostOrderEdit.aspx.cs" Inherits="B2B.HostOrderEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HostHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
     <link rel="stylesheet" href="Content/CSS/select2.css" />
     <link rel="stylesheet" href="Content/CSS/select2-bootstrap.css" />
     <style>
@@ -284,6 +286,9 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HostFooterPlaceHolder" runat="server">
     <script src="Scripts/select2.js"></script>
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
         $("#BtnClose").click(function () {
             $("#Contanti").removeClass("d-none");
@@ -319,6 +324,12 @@
 
         function MyFun() {
             $("#ComboService").select2({ theme: 'bootstrap' });
+
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
         }
 
         function ShowInfo() {
@@ -340,6 +351,12 @@
         }
 
         $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             $("#TxtDateFrom").datepicker({
                 autoclose: true
             }).on('changeDate', function (e) {

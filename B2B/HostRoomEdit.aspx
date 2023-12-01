@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HostPage.master" AutoEventWireup="true" CodeBehind="HostRoomEdit.aspx.cs" Inherits="B2B.HostRoomEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HostHeaderPlaceHolder" runat="server">
+    <link rel="stylesheet" href="Content/CSS/datatables.css" />
+    <link rel="stylesheet" href="Content/CSS/responsive.dataTables.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="HostContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5 bg-black bg-opacity-50">
@@ -151,8 +153,25 @@
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HostFooterPlaceHolder" runat="server">
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/datatables.js"></script>
+    <script src="Scripts/dataTables.responsive.min.js"></script>
     <script>
+        function MyFun() {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+        }
+
         $(function () {
+            $(".table-bordered").dataTable({
+                "dom": '<"table-responsive"t>',
+                "responsive": true,
+                "autoWidth": false,
+            });
+
             $("#ComboLift").select2({ theme: 'bootstrap' });
             $("#ComboAccessory").select2({ theme: 'bootstrap' });
             $("#ComboType").select2({ theme: 'bootstrap' }); 

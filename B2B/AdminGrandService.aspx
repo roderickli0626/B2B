@@ -28,7 +28,7 @@
                     <table class="table table-bordered table-striped text-center" id="grandService-table">
                         <thead>
                             <tr>
-                                <th>Nr</th>
+                                <%--<th>Nr</th>--%>
                                 <th>Titolo</th>
                                 <th>Descrizione</th>
                                 <th>Azione</th>
@@ -56,10 +56,6 @@
                 "processing": true,
                 "ordering": false,
                 "columns": [{
-                    "render": function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
                     "data": "Title",
                 }, {
                     "data": "Description",
