@@ -92,7 +92,7 @@
                     <div class="row" runat="server" id="serviceDiv">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="input-group align-items-center" style="height: 52px">
-                                <label for="status">Categoria Servizio: </label>
+                                <label for="status">Categoria: </label>
                                 <asp:DropDownList ID="ComboGrandService" runat="server" CssClass="form-control mr-md" 
                                     ClientIDMode="Static" CausesValidation="false" AutoPostBack="true" OnSelectedIndexChanged="ComboGrandService_SelectedIndexChanged"></asp:DropDownList>
                             </div>
