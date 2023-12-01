@@ -44,10 +44,10 @@
                                 <div class="row">
                                     <asp:Button ID="LogInBtn" runat="server" Text="Entra" OnClick="LogInBtn_Click" CssClass="btn btn-warning btn-lg" />
                                 </div>
-                                <div class="text-center pt-3">
-                                    <a href="ForgotPassword.aspx">Password dimenticata ?</a>
-                                    <a href="Register.aspx" class="ms-lg-5 me-lg-5">Crea un account</a>
-                                    <a href="EmployeeLogin.aspx">Accesso privato</a>
+                                <div class="row text-center pt-3">
+                                    <a class="col-md-4" href="ForgotPassword.aspx">Password dimenticata ?</a>
+                                    <a href="Register.aspx" class="col-md-4">Crea un account</a>
+                                    <a class="col-md-4" href="EmployeeLogin.aspx">Accesso privato</a>
                                 </div>
 
                                 <asp:ValidationSummary ID="ValSummary" runat="server" CssClass="mt-lg mb-lg text-left bg-warning" ClientIDMode="Static" />
