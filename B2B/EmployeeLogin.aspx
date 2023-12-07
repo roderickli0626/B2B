@@ -99,7 +99,7 @@
                     <p class="text-white mb-0">
                         <i class="bi-envelope me-1"></i>
 
-                        <a href="mailto:info@bnbhost.it" class="text-white">info@bnbhosts.it
+                        <a href="mailto:info@bnbhosts.it" class="text-white">info@bnbhosts.it
                         </a>
                     </p>
                 </div>

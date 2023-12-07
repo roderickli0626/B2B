@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 <p class="text-bold mb-0"><i class="bi-envelope me-1 text-warning"></i>E-mail</p>
-                                info@bnbhost.it
+                                info@bnbhosts.it
                             </div>
                         </div>
                         <div class="row text-right">
