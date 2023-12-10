@@ -424,7 +424,7 @@ namespace B2B
                     }
                 }
 
-                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, 0, note, paymentID, voucherID);
+                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, null, note, paymentID, voucherID);
                 success2 = orderController.AddServiceAlloc(editOrder.Id, serviceAllocList);
             }
             else if (editOrder.Status == 2 || editOrder.Status == 3)
@@ -433,7 +433,8 @@ namespace B2B
                 int status = 2;
                 if (employeeId != 0) status = 3;
 
-                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, editOrder.TotalAmount ?? 0, employeeId, note, null, null);
+                //success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, editOrder.TotalAmount ?? 0, employeeId, note, null, null);
+                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, editOrder.TotalAmount ?? 0, null, note, null, null);
             }
 
             if (!success1 || !success2)

@@ -39,9 +39,6 @@ namespace B2B
     partial void InsertOrderServiceAlloc(OrderServiceAlloc instance);
     partial void UpdateOrderServiceAlloc(OrderServiceAlloc instance);
     partial void DeleteOrderServiceAlloc(OrderServiceAlloc instance);
-    partial void InsertOrder(Order instance);
-    partial void UpdateOrder(Order instance);
-    partial void DeleteOrder(Order instance);
     partial void InsertVoucher(Voucher instance);
     partial void UpdateVoucher(Voucher instance);
     partial void DeleteVoucher(Voucher instance);
@@ -69,6 +66,9 @@ namespace B2B
     partial void InsertPayment(Payment instance);
     partial void UpdatePayment(Payment instance);
     partial void DeletePayment(Payment instance);
+    partial void InsertOrder(Order instance);
+    partial void UpdateOrder(Order instance);
+    partial void DeleteOrder(Order instance);
     #endregion
 		
 		public MappingDataContext(string connection) : 
@@ -116,14 +116,6 @@ namespace B2B
 			get
 			{
 				return this.GetTable<OrderServiceAlloc>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Order> Orders
-		{
-			get
-			{
-				return this.GetTable<Order>();
 			}
 		}
 		
@@ -196,6 +188,14 @@ namespace B2B
 			get
 			{
 				return this.GetTable<Payment>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Order> Orders
+		{
+			get
+			{
+				return this.GetTable<Order>();
 			}
 		}
 	}
@@ -492,9 +492,9 @@ namespace B2B
 		
 		private System.Nullable<double> _Amount;
 		
-		private EntityRef<Order> _Order;
-		
 		private EntityRef<Service> _Service;
+		
+		private EntityRef<Order> _Order;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -514,8 +514,8 @@ namespace B2B
 		
 		public OrderServiceAlloc()
 		{
-			this._Order = default(EntityRef<Order>);
 			this._Service = default(EntityRef<Service>);
+			this._Order = default(EntityRef<Order>);
 			OnCreated();
 		}
 		
@@ -627,40 +627,6 @@ namespace B2B
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderServiceAlloc", Storage="_Order", ThisKey="OrderId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Order Order
-		{
-			get
-			{
-				return this._Order.Entity;
-			}
-			set
-			{
-				Order previousValue = this._Order.Entity;
-				if (((previousValue != value) 
-							|| (this._Order.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Order.Entity = null;
-						previousValue.OrderServiceAllocs.Remove(this);
-					}
-					this._Order.Entity = value;
-					if ((value != null))
-					{
-						value.OrderServiceAllocs.Add(this);
-						this._OrderId = value.Id;
-					}
-					else
-					{
-						this._OrderId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Order");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_OrderServiceAlloc", Storage="_Service", ThisKey="ServiceId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Service Service
 		{
@@ -695,491 +661,36 @@ namespace B2B
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
-	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _HostId;
-		
-		private int _RoomId;
-		
-		private System.Nullable<System.DateTime> _DateCreated;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private System.Nullable<int> _NumberOfGuests;
-		
-		private System.Nullable<int> _VoucherId;
-		
-		private System.Nullable<double> _TotalAmount;
-		
-		private System.Nullable<int> _PaymentId;
-		
-		private System.Nullable<int> _EmploymentId;
-		
-		private System.Nullable<int> _Status;
-		
-		private string _note;
-		
-		private EntitySet<OrderServiceAlloc> _OrderServiceAllocs;
-		
-		private EntityRef<Voucher> _Voucher;
-		
-		private EntityRef<Host> _Host;
-		
-		private EntityRef<Payment> _Payment;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnHostIdChanging(int value);
-    partial void OnHostIdChanged();
-    partial void OnRoomIdChanging(int value);
-    partial void OnRoomIdChanged();
-    partial void OnDateCreatedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateCreatedChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnNumberOfGuestsChanging(System.Nullable<int> value);
-    partial void OnNumberOfGuestsChanged();
-    partial void OnVoucherIdChanging(System.Nullable<int> value);
-    partial void OnVoucherIdChanged();
-    partial void OnTotalAmountChanging(System.Nullable<double> value);
-    partial void OnTotalAmountChanged();
-    partial void OnPaymentIdChanging(System.Nullable<int> value);
-    partial void OnPaymentIdChanged();
-    partial void OnEmploymentIdChanging(System.Nullable<int> value);
-    partial void OnEmploymentIdChanged();
-    partial void OnStatusChanging(System.Nullable<int> value);
-    partial void OnStatusChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
-    #endregion
-		
-		public Order()
-		{
-			this._OrderServiceAllocs = new EntitySet<OrderServiceAlloc>(new Action<OrderServiceAlloc>(this.attach_OrderServiceAllocs), new Action<OrderServiceAlloc>(this.detach_OrderServiceAllocs));
-			this._Voucher = default(EntityRef<Voucher>);
-			this._Host = default(EntityRef<Host>);
-			this._Payment = default(EntityRef<Payment>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderServiceAlloc", Storage="_Order", ThisKey="OrderId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Order Order
 		{
 			get
 			{
-				return this._Id;
+				return this._Order.Entity;
 			}
 			set
 			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostId", DbType="Int NOT NULL")]
-		public int HostId
-		{
-			get
-			{
-				return this._HostId;
-			}
-			set
-			{
-				if ((this._HostId != value))
-				{
-					if (this._Host.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnHostIdChanging(value);
-					this.SendPropertyChanging();
-					this._HostId = value;
-					this.SendPropertyChanged("HostId");
-					this.OnHostIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomId", DbType="Int NOT NULL")]
-		public int RoomId
-		{
-			get
-			{
-				return this._RoomId;
-			}
-			set
-			{
-				if ((this._RoomId != value))
-				{
-					this.OnRoomIdChanging(value);
-					this.SendPropertyChanging();
-					this._RoomId = value;
-					this.SendPropertyChanged("RoomId");
-					this.OnRoomIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreated", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfGuests", DbType="Int")]
-		public System.Nullable<int> NumberOfGuests
-		{
-			get
-			{
-				return this._NumberOfGuests;
-			}
-			set
-			{
-				if ((this._NumberOfGuests != value))
-				{
-					this.OnNumberOfGuestsChanging(value);
-					this.SendPropertyChanging();
-					this._NumberOfGuests = value;
-					this.SendPropertyChanged("NumberOfGuests");
-					this.OnNumberOfGuestsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoucherId", DbType="Int")]
-		public System.Nullable<int> VoucherId
-		{
-			get
-			{
-				return this._VoucherId;
-			}
-			set
-			{
-				if ((this._VoucherId != value))
-				{
-					if (this._Voucher.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnVoucherIdChanging(value);
-					this.SendPropertyChanging();
-					this._VoucherId = value;
-					this.SendPropertyChanged("VoucherId");
-					this.OnVoucherIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Float")]
-		public System.Nullable<double> TotalAmount
-		{
-			get
-			{
-				return this._TotalAmount;
-			}
-			set
-			{
-				if ((this._TotalAmount != value))
-				{
-					this.OnTotalAmountChanging(value);
-					this.SendPropertyChanging();
-					this._TotalAmount = value;
-					this.SendPropertyChanged("TotalAmount");
-					this.OnTotalAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentId", DbType="Int")]
-		public System.Nullable<int> PaymentId
-		{
-			get
-			{
-				return this._PaymentId;
-			}
-			set
-			{
-				if ((this._PaymentId != value))
-				{
-					if (this._Payment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPaymentIdChanging(value);
-					this.SendPropertyChanging();
-					this._PaymentId = value;
-					this.SendPropertyChanged("PaymentId");
-					this.OnPaymentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmploymentId", DbType="Int")]
-		public System.Nullable<int> EmploymentId
-		{
-			get
-			{
-				return this._EmploymentId;
-			}
-			set
-			{
-				if ((this._EmploymentId != value))
-				{
-					this.OnEmploymentIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmploymentId = value;
-					this.SendPropertyChanged("EmploymentId");
-					this.OnEmploymentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
-		public System.Nullable<int> Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(MAX)")]
-		public string note
-		{
-			get
-			{
-				return this._note;
-			}
-			set
-			{
-				if ((this._note != value))
-				{
-					this.OnnoteChanging(value);
-					this.SendPropertyChanging();
-					this._note = value;
-					this.SendPropertyChanged("note");
-					this.OnnoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderServiceAlloc", Storage="_OrderServiceAllocs", ThisKey="Id", OtherKey="OrderId")]
-		public EntitySet<OrderServiceAlloc> OrderServiceAllocs
-		{
-			get
-			{
-				return this._OrderServiceAllocs;
-			}
-			set
-			{
-				this._OrderServiceAllocs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Voucher_Order", Storage="_Voucher", ThisKey="VoucherId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Voucher Voucher
-		{
-			get
-			{
-				return this._Voucher.Entity;
-			}
-			set
-			{
-				Voucher previousValue = this._Voucher.Entity;
+				Order previousValue = this._Order.Entity;
 				if (((previousValue != value) 
-							|| (this._Voucher.HasLoadedOrAssignedValue == false)))
+							|| (this._Order.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Voucher.Entity = null;
-						previousValue.Orders.Remove(this);
+						this._Order.Entity = null;
+						previousValue.OrderServiceAllocs.Remove(this);
 					}
-					this._Voucher.Entity = value;
+					this._Order.Entity = value;
 					if ((value != null))
 					{
-						value.Orders.Add(this);
-						this._VoucherId = value.Id;
+						value.OrderServiceAllocs.Add(this);
+						this._OrderId = value.Id;
 					}
 					else
 					{
-						this._VoucherId = default(Nullable<int>);
+						this._OrderId = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Voucher");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Host_Order", Storage="_Host", ThisKey="HostId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Host Host
-		{
-			get
-			{
-				return this._Host.Entity;
-			}
-			set
-			{
-				Host previousValue = this._Host.Entity;
-				if (((previousValue != value) 
-							|| (this._Host.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Host.Entity = null;
-						previousValue.Orders.Remove(this);
-					}
-					this._Host.Entity = value;
-					if ((value != null))
-					{
-						value.Orders.Add(this);
-						this._HostId = value.Id;
-					}
-					else
-					{
-						this._HostId = default(int);
-					}
-					this.SendPropertyChanged("Host");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Payment", ThisKey="PaymentId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Payment Payment
-		{
-			get
-			{
-				return this._Payment.Entity;
-			}
-			set
-			{
-				Payment previousValue = this._Payment.Entity;
-				if (((previousValue != value) 
-							|| (this._Payment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Payment.Entity = null;
-						previousValue.Orders.Remove(this);
-					}
-					this._Payment.Entity = value;
-					if ((value != null))
-					{
-						value.Orders.Add(this);
-						this._PaymentId = value.Id;
-					}
-					else
-					{
-						this._PaymentId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Payment");
+					this.SendPropertyChanged("Order");
 				}
 			}
 		}
@@ -1202,18 +713,6 @@ namespace B2B
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_OrderServiceAllocs(OrderServiceAlloc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Order = this;
-		}
-		
-		private void detach_OrderServiceAllocs(OrderServiceAlloc entity)
-		{
-			this.SendPropertyChanging();
-			entity.Order = null;
 		}
 	}
 	
@@ -1589,9 +1088,9 @@ namespace B2B
 		
 		private System.Nullable<System.DateTime> _ResetTokenExpiry;
 		
-		private EntitySet<Order> _Orders;
-		
 		private EntitySet<Room> _Rooms;
+		
+		private EntitySet<Order> _Orders;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1623,8 +1122,8 @@ namespace B2B
 		
 		public Host()
 		{
-			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			OnCreated();
 		}
 		
@@ -1848,19 +1347,6 @@ namespace B2B
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Host_Order", Storage="_Orders", ThisKey="Id", OtherKey="HostId")]
-		public EntitySet<Order> Orders
-		{
-			get
-			{
-				return this._Orders;
-			}
-			set
-			{
-				this._Orders.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Host_Room", Storage="_Rooms", ThisKey="Id", OtherKey="HostId")]
 		public EntitySet<Room> Rooms
 		{
@@ -1871,6 +1357,19 @@ namespace B2B
 			set
 			{
 				this._Rooms.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Host_Order", Storage="_Orders", ThisKey="Id", OtherKey="HostId")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
 			}
 		}
 		
@@ -1894,18 +1393,6 @@ namespace B2B
 			}
 		}
 		
-		private void attach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Host = this;
-		}
-		
-		private void detach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Host = null;
-		}
-		
 		private void attach_Rooms(Room entity)
 		{
 			this.SendPropertyChanging();
@@ -1913,6 +1400,18 @@ namespace B2B
 		}
 		
 		private void detach_Rooms(Room entity)
+		{
+			this.SendPropertyChanging();
+			entity.Host = null;
+		}
+		
+		private void attach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Host = this;
+		}
+		
+		private void detach_Orders(Order entity)
 		{
 			this.SendPropertyChanging();
 			entity.Host = null;
@@ -3346,6 +2845,507 @@ namespace B2B
 		{
 			this.SendPropertyChanging();
 			entity.Payment = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
+	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _HostId;
+		
+		private int _RoomId;
+		
+		private System.Nullable<System.DateTime> _DateCreated;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _NumberOfGuests;
+		
+		private System.Nullable<int> _VoucherId;
+		
+		private System.Nullable<double> _TotalAmount;
+		
+		private System.Nullable<int> _PaymentId;
+		
+		private string _EmploymentId;
+		
+		private System.Nullable<int> _Status;
+		
+		private string _note;
+		
+		private EntitySet<OrderServiceAlloc> _OrderServiceAllocs;
+		
+		private EntityRef<Host> _Host;
+		
+		private EntityRef<Payment> _Payment;
+		
+		private EntityRef<Voucher> _Voucher;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnHostIdChanging(int value);
+    partial void OnHostIdChanged();
+    partial void OnRoomIdChanging(int value);
+    partial void OnRoomIdChanged();
+    partial void OnDateCreatedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateCreatedChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnNumberOfGuestsChanging(System.Nullable<int> value);
+    partial void OnNumberOfGuestsChanged();
+    partial void OnVoucherIdChanging(System.Nullable<int> value);
+    partial void OnVoucherIdChanged();
+    partial void OnTotalAmountChanging(System.Nullable<double> value);
+    partial void OnTotalAmountChanged();
+    partial void OnPaymentIdChanging(System.Nullable<int> value);
+    partial void OnPaymentIdChanged();
+    partial void OnEmploymentIdChanging(string value);
+    partial void OnEmploymentIdChanged();
+    partial void OnStatusChanging(System.Nullable<int> value);
+    partial void OnStatusChanged();
+    partial void OnnoteChanging(string value);
+    partial void OnnoteChanged();
+    #endregion
+		
+		public Order()
+		{
+			this._OrderServiceAllocs = new EntitySet<OrderServiceAlloc>(new Action<OrderServiceAlloc>(this.attach_OrderServiceAllocs), new Action<OrderServiceAlloc>(this.detach_OrderServiceAllocs));
+			this._Host = default(EntityRef<Host>);
+			this._Payment = default(EntityRef<Payment>);
+			this._Voucher = default(EntityRef<Voucher>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostId", DbType="Int NOT NULL")]
+		public int HostId
+		{
+			get
+			{
+				return this._HostId;
+			}
+			set
+			{
+				if ((this._HostId != value))
+				{
+					if (this._Host.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHostIdChanging(value);
+					this.SendPropertyChanging();
+					this._HostId = value;
+					this.SendPropertyChanged("HostId");
+					this.OnHostIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomId", DbType="Int NOT NULL")]
+		public int RoomId
+		{
+			get
+			{
+				return this._RoomId;
+			}
+			set
+			{
+				if ((this._RoomId != value))
+				{
+					this.OnRoomIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoomId = value;
+					this.SendPropertyChanged("RoomId");
+					this.OnRoomIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfGuests", DbType="Int")]
+		public System.Nullable<int> NumberOfGuests
+		{
+			get
+			{
+				return this._NumberOfGuests;
+			}
+			set
+			{
+				if ((this._NumberOfGuests != value))
+				{
+					this.OnNumberOfGuestsChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfGuests = value;
+					this.SendPropertyChanged("NumberOfGuests");
+					this.OnNumberOfGuestsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoucherId", DbType="Int")]
+		public System.Nullable<int> VoucherId
+		{
+			get
+			{
+				return this._VoucherId;
+			}
+			set
+			{
+				if ((this._VoucherId != value))
+				{
+					if (this._Voucher.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVoucherIdChanging(value);
+					this.SendPropertyChanging();
+					this._VoucherId = value;
+					this.SendPropertyChanged("VoucherId");
+					this.OnVoucherIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Float")]
+		public System.Nullable<double> TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this.OnTotalAmountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalAmount = value;
+					this.SendPropertyChanged("TotalAmount");
+					this.OnTotalAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentId", DbType="Int")]
+		public System.Nullable<int> PaymentId
+		{
+			get
+			{
+				return this._PaymentId;
+			}
+			set
+			{
+				if ((this._PaymentId != value))
+				{
+					if (this._Payment.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPaymentIdChanging(value);
+					this.SendPropertyChanging();
+					this._PaymentId = value;
+					this.SendPropertyChanged("PaymentId");
+					this.OnPaymentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmploymentId", DbType="VarChar(MAX)")]
+		public string EmploymentId
+		{
+			get
+			{
+				return this._EmploymentId;
+			}
+			set
+			{
+				if ((this._EmploymentId != value))
+				{
+					this.OnEmploymentIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmploymentId = value;
+					this.SendPropertyChanged("EmploymentId");
+					this.OnEmploymentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
+		public System.Nullable<int> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="VarChar(MAX)")]
+		public string note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				if ((this._note != value))
+				{
+					this.OnnoteChanging(value);
+					this.SendPropertyChanging();
+					this._note = value;
+					this.SendPropertyChanged("note");
+					this.OnnoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderServiceAlloc", Storage="_OrderServiceAllocs", ThisKey="Id", OtherKey="OrderId")]
+		public EntitySet<OrderServiceAlloc> OrderServiceAllocs
+		{
+			get
+			{
+				return this._OrderServiceAllocs;
+			}
+			set
+			{
+				this._OrderServiceAllocs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Host_Order", Storage="_Host", ThisKey="HostId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Host Host
+		{
+			get
+			{
+				return this._Host.Entity;
+			}
+			set
+			{
+				Host previousValue = this._Host.Entity;
+				if (((previousValue != value) 
+							|| (this._Host.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Host.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Host.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._HostId = value.Id;
+					}
+					else
+					{
+						this._HostId = default(int);
+					}
+					this.SendPropertyChanged("Host");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Payment_Order", Storage="_Payment", ThisKey="PaymentId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Payment Payment
+		{
+			get
+			{
+				return this._Payment.Entity;
+			}
+			set
+			{
+				Payment previousValue = this._Payment.Entity;
+				if (((previousValue != value) 
+							|| (this._Payment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Payment.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Payment.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._PaymentId = value.Id;
+					}
+					else
+					{
+						this._PaymentId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Payment");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Voucher_Order", Storage="_Voucher", ThisKey="VoucherId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Voucher Voucher
+		{
+			get
+			{
+				return this._Voucher.Entity;
+			}
+			set
+			{
+				Voucher previousValue = this._Voucher.Entity;
+				if (((previousValue != value) 
+							|| (this._Voucher.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Voucher.Entity = null;
+						previousValue.Orders.Remove(this);
+					}
+					this._Voucher.Entity = value;
+					if ((value != null))
+					{
+						value.Orders.Add(this);
+						this._VoucherId = value.Id;
+					}
+					else
+					{
+						this._VoucherId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Voucher");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_OrderServiceAllocs(OrderServiceAlloc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Order = this;
+		}
+		
+		private void detach_OrderServiceAllocs(OrderServiceAlloc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Order = null;
 		}
 	}
 }

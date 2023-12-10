@@ -24,6 +24,15 @@ namespace B2B
         protected global::System.Web.UI.HtmlControls.HtmlForm from1;
 
         /// <summary>
+        /// HfAssignedIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HfAssignedIDs;
+
+        /// <summary>
         /// pageTitle control.
         /// </summary>
         /// <remarks>

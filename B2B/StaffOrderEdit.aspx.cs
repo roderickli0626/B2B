@@ -44,6 +44,7 @@ namespace B2B
             {
                 if (editItemId != 0)
                 {
+                    HfAssignedIDs.Value = editOrder.EmploymentId;
                     serviceAllocList = orderController.FindServiceByOrder(editItemId);
                     string jsonString = JsonConvert.SerializeObject(serviceAllocList);
                     HfServiceAlloc.Value = jsonString;
@@ -141,7 +142,7 @@ namespace B2B
             }
             if (editOrder.Voucher != null) TxtVoucher.Text = editOrder.Voucher?.SerialNumberGenerator.ToString() ?? "";
             TxtNumberOfGuests.Text = editOrder.NumberOfGuests.ToString();
-            ControlUtil.SelectValue(ComboAssignedTo, editOrder.EmploymentId.ToString());
+            //ControlUtil.SelectValue(ComboAssignedTo, editOrder.EmploymentId.ToString());
             ControlUtil.SelectValue(ComboOwner, editOrder.HostId.ToString());
             LoadRoom();
         }
@@ -279,16 +280,22 @@ namespace B2B
                 {
                     if (PaidStatus.Checked) status = 2;
                 }
-                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, 0, note, null, null);
+                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, totalAmount, null, note, null, null);
                 success2 = orderController.AddServiceAlloc(editOrder.Id, serviceAllocList);
             }
             else if (editOrder.Status == 2 || editOrder.Status == 3)
             {
-                int employeeId = ControlUtil.GetSelectedValue(ComboAssignedTo) ?? 0;
-                int status = 2;
-                if (employeeId != 0) status = 3;
+                string[] selectedValues = Request.Form.GetValues(ComboAssignedTo.UniqueID);
+                string employeeIds;
+                if (selectedValues == null) employeeIds = string.Empty;
+                else employeeIds = string.Join(",", selectedValues);
 
-                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, editOrder.TotalAmount ?? 0, employeeId, note, null, null);
+                //int employeeId = ControlUtil.GetSelectedValue(ComboAssignedTo) ?? 0;
+                int status = 2;
+                //if (employeeId != 0) status = 3;
+                if (!string.IsNullOrEmpty(employeeIds)) status = 3;
+
+                success1 = orderController.UpdateOrder(editOrder.Id, status, startDate, endDate, numberOfGuests, editOrder.TotalAmount ?? 0, employeeIds, note, null, null);
             }
 
             if (!success1 || !success2)

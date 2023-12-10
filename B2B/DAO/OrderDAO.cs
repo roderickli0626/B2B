@@ -122,7 +122,7 @@ namespace B2B.DAO
             {
                 Table<Order> table = GetContext().Orders;
 
-                IQueryable<Order> result = table.Where(r => r.EmploymentId == employeeID);
+                IQueryable<Order> result = table.Where(r => r.EmploymentId.Contains(employeeID.ToString()));
                 result = result.Where(
                     u =>
                     u.Host.Name.Contains(search));

@@ -90,10 +90,10 @@ namespace B2B
 
                 if (order.EmploymentId != null)
                 {
-                    Employment employment = new EmployeeController().FindBy(order.EmploymentId ?? 0);
-                    if (employment != null)
+                    List<Employment> employments = new EmployeeController().FindByIDS(order.EmploymentId);
+                    if (employments != null)
                     {
-                        subTitle += "\nAssgined To: " + employment.Name;
+                        subTitle += "\nAssgined To: " + string.Join(",", employments.Select(e => e.Name));
                     }
                 }
 
@@ -184,8 +184,8 @@ namespace B2B
                 OrderCheck check = new OrderCheck(fb);
                 if (fb.EmploymentId != null)
                 {
-                    Employment employee = new EmploymentDAO().FindById(fb.EmploymentId ?? 0);
-                    check.EmployeeName = employee.Name;
+                    List<Employment> employees = new EmployeeController().FindByIDS(fb.EmploymentId);
+                    check.EmployeeName = string.Join(",", employees.Select(ee => ee.Name));
                 }
                 checks.Add(check);
             }

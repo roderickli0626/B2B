@@ -34,8 +34,8 @@ namespace B2B.Controller
                 OrderCheck check = new OrderCheck(fb);
                 if (fb.EmploymentId != null)
                 {
-                    Employment employee = employmentDao.FindById(fb.EmploymentId ?? 0);
-                    check.EmployeeName = employee.Name;
+                    List<Employment> employees = new EmployeeController().FindByIDS(fb.EmploymentId);
+                    check.EmployeeName = string.Join(",", employees.Select(e => e.Name));
                 }
                 check.Address = roomDao.FindById(fb.RoomId).Address;
                 checks.Add(check);
@@ -58,8 +58,8 @@ namespace B2B.Controller
                 OrderCheck check = new OrderCheck(fb);
                 if (fb.EmploymentId != null)
                 {
-                    Employment employee = employmentDao.FindById(fb.EmploymentId ?? 0);
-                    check.EmployeeName = employee.Name;
+                    List<Employment> employees = new EmployeeController().FindByIDS(fb.EmploymentId);
+                    check.EmployeeName = string.Join(",", employees.Select(ee => ee.Name));
                 }
                 check.Address = roomDao.FindById(fb.RoomId).Address;
                 checks.Add(check);
@@ -82,8 +82,8 @@ namespace B2B.Controller
                 OrderCheck check = new OrderCheck(fb);
                 if (fb.EmploymentId != null)
                 {
-                    Employment employee = employmentDao.FindById(fb.EmploymentId ?? 0);
-                    check.EmployeeName = employee.Name;
+                    List<Employment> employees = new EmployeeController().FindByIDS(fb.EmploymentId);
+                    check.EmployeeName = string.Join(",", employees.Select(ee => ee.Name));
                 }
                 checks.Add(check);
             }
@@ -143,7 +143,7 @@ namespace B2B.Controller
             return result;
         }
 
-        public bool UpdateOrder(int id, int status, DateTime dateFrom, DateTime dateTo, int numberOfGuests, double totalAmount, int employeeId, string note, int? paymentID, int? voucherID)
+        public bool UpdateOrder(int id, int status, DateTime dateFrom, DateTime dateTo, int numberOfGuests, double totalAmount, string employeeIds, string note, int? paymentID, int? voucherID)
         {
             Order order = orderDao.FindById(id);
             if (order == null) return false;
@@ -154,7 +154,7 @@ namespace B2B.Controller
             order.NumberOfGuests = numberOfGuests;
             order.TotalAmount = totalAmount;
             order.note = note;
-            if (employeeId != 0) order.EmploymentId = employeeId;
+            if (!string.IsNullOrEmpty(employeeIds)) order.EmploymentId = employeeIds;
             else order.EmploymentId = null;
             if (paymentID != null)
             {

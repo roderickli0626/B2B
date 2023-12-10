@@ -22,10 +22,28 @@
         .select2.select2-container.select2-container--bootstrap {
             margin-left: -3px !important;
         }
+
+        .select2-selection.select2-selection--multiple {
+            box-shadow: none !important;
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            background-color: transparent;
+            width:100%;
+        }
+        .select2-container--default.select2-container, .selection {
+            width:100% !important;
+        }
+        .select2-container--default.select2-container--focus .select2-selection--multiple {
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            width:100%;
+        }
+        #select2-ComboAssignedTo-container {
+            text-align: center
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContentPlaceHolder" runat="server">
     <form runat="server" id="from1" class="custom-form hero-form mx-auto mt-4 col-md-8 pb-lg-5">
+        <asp:HiddenField ID="HfAssignedIDs" runat="server" ClientIDMode="Static" />
         <section class=" mb-5">
             <header class="text-center">
                 <h2 class="hero-title text-black-50 mt-3 mb-4" runat="server" id="pageTitle">ORDINI</h2>
@@ -204,9 +222,9 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 me-auto" runat="server" id="assignDiv">
-                        <div class="input-group align-items-center" style="height: 52px">
+                        <div class="input-group align-items-center" style="min-height: 52px">
                             <label for="status">Assegnato a: </label>
-                            <asp:DropDownList ID="ComboAssignedTo" runat="server" CssClass="form-control mr-md" ClientIDMode="Static"></asp:DropDownList>
+                            <asp:DropDownList ID="ComboAssignedTo" runat="server" CssClass="form-control mr-md" ClientIDMode="Static" Multiple="true"></asp:DropDownList>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4" runat="server" id="closeDiv">
@@ -250,6 +268,14 @@
     <script src="Scripts/jquery.dataTables.js"></script>
     <script src="Scripts/datatables.js"></script>
     <script src="Scripts/dataTables.responsive.min.js"></script>
+    <script>
+        var ids = $("#HfAssignedIDs").val();
+        if (ids == null || ids == "") $('#ComboAssignedTo').val([]).trigger('change');
+        else {
+            selectedValues = ids.split(',');
+            $('#ComboAssignedTo').val(selectedValues).trigger('change');
+        }
+    </script>
     <script type="text/javascript">
         function MyFun() {
             $("#ComboRoom").select2({ theme: 'bootstrap' });

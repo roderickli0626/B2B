@@ -47,6 +47,17 @@ namespace B2B.Controller
         {
             return employmentDAO.FindById(id);
         }
+        public List<Employment> FindByIDS(string Ids)
+        {
+            if (Ids == null) return null;
+            List<int> intList = Ids.Split(',').Select(int.Parse).ToList();
+            List<Employment> result = new List<Employment>();
+            foreach (int i in intList)
+            {
+                result.Add(FindBy(i));
+            }
+            return result;
+        }
 
         public Employment FindByNamePassword(string name, string password)
         {
