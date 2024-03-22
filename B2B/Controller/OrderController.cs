@@ -72,7 +72,7 @@ namespace B2B.Controller
         public SearchResult SearchEmployeeOrders(int employeeID, DateTime? dateFrom, DateTime? dateTo, int start, int length, string search, int status)
         {
             SearchResult result = new SearchResult();
-            IQueryable<Order> list = orderDao.SearchByEmployee(employeeID, dateFrom, dateTo, search, status).OrderBy(l => l.Id);
+            IQueryable<Order> list = orderDao.SearchByEmployee(employeeID, dateFrom, dateTo, search, status).OrderByDescending(l => l.StartDate);
             result.TotalCount = list.Count();
             list = list.Skip(start).Take(length);
 

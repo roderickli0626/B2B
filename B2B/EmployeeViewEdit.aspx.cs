@@ -49,8 +49,8 @@ namespace B2B
                 }
                 LoadServiceTable();
                 LoadOwners();
-                LoadRoom();
                 LoadInfo();
+                LoadRoom();
                 SetVisible();
             }
         }
